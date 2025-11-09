@@ -1,19 +1,28 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useUserHook from "../../../hooks/useUserHook";
+import useArtWorkHook from "../../../hooks/useArtWorkHook";
 
 const AddArtworkForm = () => {
   const { user } = useUserHook();
-
+  const { latestArtWorkLoading, addNewArt } = useArtWorkHook();
+console.log(latestArtWorkLoading)
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  // 🔹 Form submit function
-  const onSubmit = (data) => {
+  // Form submit function
+  const onSubmit = async (data) => {
     console.log("Submitted Artwork Data:", data);
+    try {
+      await addNewArt(data);
+      reset()
+    } catch (error) {
+      console.error("Error submitting artwork:", error);
+    }
   };
 
   return (
@@ -153,8 +162,9 @@ const AddArtworkForm = () => {
           <button
             type="submit"
             className="bg-indigo-600 hover:bg-indigo-700 transition-colors px-6 py-3 rounded-lg font-semibold"
+            disabled={latestArtWorkLoading}
           >
-            Add Artwork
+            {latestArtWorkLoading ? "Loading..." : "Add Artwork"}
           </button>
         </div>
       </form>

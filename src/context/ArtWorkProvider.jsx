@@ -8,14 +8,13 @@ export const ArtWorkContext = createContext(null);
 const ArtWorkProvider = ({ children }) => {
   const [latestArtworks, setLatestArtworks] = useState([]);
   const [latestArtWorkLoading, setLatestArtWorkLoading] = useState(true);
-  const [artLoading, setArtLoading] = useState(true);
+  const [addNewArtsLoading, setAddNewArtsLoading] = useState(true);
 
   useEffect(() => {
     const fetchLatestArtworks = async () => {
       setLatestArtWorkLoading(true);
       try {
         const response = await apiClient.get(`/artworks/latest`);
-        console.log(response.data.latestArtWorks);
         if (response.data.success) {
           setLatestArtworks(response.data.latestArtWorks);
         }
@@ -27,10 +26,26 @@ const ArtWorkProvider = ({ children }) => {
     };
     fetchLatestArtworks();
   }, []);
+
+  const addNewArt = async (artWorkData) => {
+    setAddNewArtsLoading(true);
+    try {
+      const response = await apiClient.post("/artworks", artWorkData);
+      if (response.data.success) {
+        setLatestArtworks((prev) => [response.data.data, ...prev]);
+      }
+      console.log(response);
+    } catch (error) {
+      console.log("Error adding artwork:", error);
+    } finally {
+      setAddNewArtsLoading(false);
+    }
+  };
   const artInfo = {
-    artLoading,
     latestArtWorkLoading,
+    addNewArtsLoading,
     latestArtworks,
+    addNewArt,
   };
   return (
     <ArtWorkContext.Provider value={artInfo}>
