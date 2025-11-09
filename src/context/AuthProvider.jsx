@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.init";
@@ -86,6 +87,19 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  //Update User Profile
+  const updateUser = async (updatedUserData) => {
+    setUserLoading(true);
+    try {
+      const result = await updateProfile(auth.currentUser, updatedUserData);
+      console.log("Update result:", result);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    } finally {
+      setUserLoading(false);
+    }
+  };
+
   useEffect(() => {
     setUserLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -103,6 +117,7 @@ const AuthProvider = ({ children }) => {
     loginUser,
     logOutUser,
     signInWithGoogle,
+    updateUser,
   };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>

@@ -1,8 +1,10 @@
 import { NavLink } from "react-router";
 import { CiMenuFries } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
+import { FaUserAlt } from "react-icons/fa";
 import { useState } from "react";
 import MobileNavbar from "./MobileNavbar";
+import useUserHook from "../../hooks/useUserHook";
 const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
@@ -11,10 +13,10 @@ const Navbar = () => {
     { name: "My Gallery", path: "/my-gallery" },
     { name: "My Favorites", path: "/my-favorites" },
   ];
-
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const closeMenu = () => setShowMobileMenu(false);
-
+  const { userloading, user } = useUserHook();
+  console.log(user);
   return (
     <header className="bg-white  sticky top-0 z-50 border-b">
       <div className="container mx-auto px-6 py-3 flex items-center justify-between">
@@ -41,20 +43,34 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Auth Buttons */}
-        <div className="hidden md:flex items-center space-x-3">
-          <NavLink
-            to="/login"
-            className="px-4 py-2 border border-indigo-600 text-black hover:text-white rounded hover:bg-indigo-600 transition-colors"
-          >
-            Login
-          </NavLink>
-          <NavLink
-            to="/register"
-            className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-500 transition-colors"
-          >
-            Register
-          </NavLink>
+        <div className="hidden md:flex">
+          {user ? (
+            <div className="bg-green-200 hover:bg-green-300 p-1 rounded-full border-none outline-none ">
+              <img
+                className="size-10 rounded-full cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out"
+                src={user.photoURL}
+                alt=""
+              />
+            </div>
+          ) : (
+            <>
+              {/* Auth Buttons */}
+              <div className=" items-center space-x-3">
+                <NavLink
+                  to="/login"
+                  className="px-4 py-2 border border-indigo-600 text-black hover:text-white rounded hover:bg-indigo-600 transition-colors"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-500 transition-colors"
+                >
+                  Register
+                </NavLink>
+              </div>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Icon Toggle*/}
@@ -69,10 +85,7 @@ const Navbar = () => {
       </div>
       {/* Mobile Menu */}
       {showMobileMenu && (
-        <MobileNavbar
-          navItems={navItems}
-          closeMenu={closeMenu}
-        />
+        <MobileNavbar navItems={navItems} closeMenu={closeMenu} />
       )}
     </header>
   );

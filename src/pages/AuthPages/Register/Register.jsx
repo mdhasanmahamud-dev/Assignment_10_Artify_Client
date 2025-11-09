@@ -7,7 +7,8 @@ import useUserHook from "../../../hooks/useUserHook";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { userloading, createUser, signInWithGoogle } = useUserHook();
+  const { userloading, createUser, signInWithGoogle, updateUser } =
+    useUserHook();
   const navigate = useNavigate();
   const {
     register,
@@ -20,6 +21,12 @@ const Register = () => {
     try {
       const result = await createUser(data.email, data.password);
       console.log(result.user);
+      if (result.user) {
+        await updateUser({
+          displayName: data.name,
+          photoURL: data.photo,
+        });
+      }
       navigate("/");
     } catch (error) {
       console.error(error);
@@ -85,6 +92,23 @@ const Register = () => {
             />
             {errors.email && (
               <p className="text-red-400 text-sm">{errors.email.message}</p>
+            )}
+          </div>
+          {/* Photo URL */}
+          <div>
+            <label className="block text-gray-300 font-medium mb-1">
+              Photo URL
+            </label>
+            <input
+              {...register("photo", { required: "Full Name is required" })}
+              type="text"
+              placeholder="Enter your full name"
+              className={`w-full px-4 py-2 border-b border-gray-600 bg-transparent focus:outline-none focus:border-indigo-500 transition ${
+                errors.photo ? "border-red-500" : ""
+              }`}
+            />
+            {errors.photo && (
+              <p className="text-red-400 text-sm">{errors.photo.message}</p>
             )}
           </div>
 
