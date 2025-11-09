@@ -8,17 +8,25 @@ import MyFavorites from "../pages/MyFavorites/MyFavorites/MyFavorites";
 import Login from "../pages/AuthPages/Login/Login";
 import Register from "../pages/AuthPages/Register/Register";
 import PageNotFound from "../pages/PageNotFound/PageNotFound";
+import ProtectedRoutes from "./ProtectedRoutes";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement : <PageNotFound/>,
+    errorElement: <PageNotFound />,
     children: [
       { index: true, element: <App /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/explore-artworks", element: <ExploreArtworks /> },
-      { path: "/add-artwork", element: <AddArtwork /> },
+      {
+        path: "/add-artwork",
+        element: (
+          <ProtectedRoutes>
+            <AddArtwork />
+          </ProtectedRoutes>
+        ),
+      },
       { path: "/my-gallery", element: <MyGallery /> },
       { path: "/my-favorites", element: <MyFavorites /> },
     ],
