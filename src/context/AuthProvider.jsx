@@ -1,7 +1,9 @@
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
@@ -68,6 +70,22 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  //Sign In With Google
+  const signInWithGoogle = async () => {
+    const googleProvider = new GoogleAuthProvider();
+    try {
+      setUserLoading(true);
+      const result = await signInWithPopup(auth, googleProvider);
+      toast.success("Signed in with Google!");
+      console.log(result.user);
+    } catch (error) {
+      toast.error("Google login failed!");
+      console.error("Error signing in with Google:", error);
+    } finally {
+      setUserLoading(false);
+    }
+  };
+
   useEffect(() => {
     setUserLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -84,6 +102,7 @@ const AuthProvider = ({ children }) => {
     createUser,
     loginUser,
     logOutUser,
+    signInWithGoogle,
   };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>

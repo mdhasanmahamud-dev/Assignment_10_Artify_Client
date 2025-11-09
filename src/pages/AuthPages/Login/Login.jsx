@@ -7,7 +7,7 @@ import useUserHook from "../../../hooks/useUserHook";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { userloading, loginUser } = useUserHook();
+  const { userloading, loginUser, signInWithGoogle } = useUserHook();
   const {
     register,
     handleSubmit,
@@ -23,6 +23,16 @@ const Login = () => {
     }
   };
 
+  const handleLoginGoogle = async () => {
+    try {
+      const result = await signInWithGoogle();
+      if (result) {
+        navigate("/"); // login successful → home page
+      }
+    } catch (error) {
+      console.error("Google login error:", error);
+    }
+  };
   return (
     <div className="flex justify-center  my-10">
       <div className="bg-zinc-800 text-gray-200 rounded-lg p-8 w-full max-w-xs md:max-w-md lg:max-w-lg shadow-lg border border-zinc-700">
@@ -101,9 +111,9 @@ const Login = () => {
 
           {/* Google Button */}
           <button
+            onClick={handleLoginGoogle}
             type="button"
-            className="w-full flex items-center justify-center gap-2 border border-gray-600 py-2 rounded-md hover:bg-zinc-700 transition"
-            onClick={() => console.log("Google login clicked")}
+            className="w-full flex items-center justify-center gap-2 border border-gray-600 py-2 rounded-md hover:bg-zinc-700 transition cursor-pointer"
           >
             <FaGoogle className="text-emerald-400" /> Login with Google
           </button>

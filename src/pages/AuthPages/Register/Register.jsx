@@ -7,7 +7,7 @@ import useUserHook from "../../../hooks/useUserHook";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { userloading, createUser } = useUserHook();
+  const { userloading, createUser, signInWithGoogle } = useUserHook();
   const navigate = useNavigate();
   const {
     register,
@@ -23,6 +23,18 @@ const Register = () => {
       navigate("/");
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  //Handle Login with google
+  const handleSignUpGoogle = async () => {
+    try {
+      const result = await signInWithGoogle();
+      if (result) {
+        navigate("/");
+      }
+    } catch (error) {
+      console.log("Google SignUp error:", error);
     }
   };
 
@@ -125,8 +137,9 @@ const Register = () => {
 
           {/* Google Login */}
           <button
+            onClick={handleSignUpGoogle}
             type="button"
-            className="w-full flex items-center justify-center gap-2 border border-gray-600 py-2 rounded-md hover:bg-zinc-700 transition"
+            className="w-full flex items-center justify-center gap-2 border border-gray-600 py-2 rounded-md hover:bg-zinc-700 transition cursor-pointer"
           >
             <FaGoogle className="text-emerald-400" /> Sign up with Google
           </button>
