@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import AddArtworkForm from "../AddArtworkForm/AddArtworkForm";
 
 const AddArtwork = () => {
-    return (
-        <div className='text-white'>
-            AddArtwork Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam id deserunt ratione voluptate placeat explicabo, voluptatem labore atque aliquid vitae.
-        </div>
-    );
+  return (
+    <div className="py-10">
+      <AddArtworkForm />
+    </div>
+  );
 };
 
 export default AddArtwork;

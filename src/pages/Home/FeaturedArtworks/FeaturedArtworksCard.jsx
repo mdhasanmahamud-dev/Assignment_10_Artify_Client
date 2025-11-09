@@ -1,13 +1,13 @@
 import React from "react";
 
 const FeaturedArtworksCard = ({ art }) => {
-  const { image, title, artistName, category } = art;
+  const { imageUrl, title, artistName, category } = art;
 
   return (
     <div className="group  bg-zinc-900 hover:bg-zinc-950  text-white  overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
       {/* Image */}
       <img
-        src={image}
+        src={imageUrl}
         alt={title}
         className="w-full h-56 object-cover rounded-md rounded-b-none"
       />
