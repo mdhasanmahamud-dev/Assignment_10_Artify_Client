@@ -4,7 +4,7 @@ import { createContext } from "react";
 import axios from "axios";
 import apiClient from "../api/apiClient";
 export const ArtWorkContext = createContext(null);
-
+import SuccessSweetAlart from "../components/SuccessSweetAlart";
 const ArtWorkProvider = ({ children }) => {
   const [latestArtworks, setLatestArtworks] = useState([]);
   const [latestArtWorkLoading, setLatestArtWorkLoading] = useState(true);
@@ -34,6 +34,7 @@ const ArtWorkProvider = ({ children }) => {
       if (response.data.success) {
         setLatestArtworks((prev) => [response.data.data, ...prev]);
       }
+      SuccessSweetAlart(response.data.message);
       console.log(response);
     } catch (error) {
       console.log("Error adding artwork:", error);
