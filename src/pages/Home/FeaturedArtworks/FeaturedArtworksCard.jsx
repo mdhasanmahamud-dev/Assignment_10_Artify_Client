@@ -1,7 +1,7 @@
-import React from "react";
+import { NavLink } from "react-router";
 
 const FeaturedArtworksCard = ({ art }) => {
-  const { imageUrl, title, userName, category } = art;
+  const { imageUrl, title, userName, category, like, _id } = art;
 
   return (
     <div className="group  bg-zinc-900 hover:bg-zinc-950  text-white  overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
@@ -28,12 +28,27 @@ const FeaturedArtworksCard = ({ art }) => {
           <p className="text-gray-400 text-sm mb-4">
             <span className="font-medium">Category:</span> {category}
           </p>
+          <p className="text-gray-400 text-sm flex items-center gap-1 mb-4">
+            <span className="font-medium">Likes:</span> {like}
+          </p>
         </div>
 
         {/* View Details Button */}
-        <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md w-full">
+        <NavLink
+          to={`/artworks/${_id}`}
+          className="
+          bg-indigo-600 hover:bg-indigo-700
+          text-white font-semibold
+          px-5 py-2
+          rounded-lg
+          transition-all duration-300
+          shadow-sm hover:shadow-md
+          w-full
+          text-center
+        "
+        >
           View Details
-        </button>
+        </NavLink>
       </div>
     </div>
   );

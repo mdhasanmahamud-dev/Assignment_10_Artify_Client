@@ -3,9 +3,7 @@ import useArtWorkHook from "../../../hooks/useArtWorkHook";
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { setPublicArtworks, fetchPublicArtworks } = useArtWorkHook();
-
-  console.log(searchTerm);
+  const { fetchPublicArtworks } = useArtWorkHook();
 
   const handleSearch = async () => {
     try {
@@ -44,7 +42,10 @@ const SearchBar = () => {
       </button>
 
       {/* Reset Button */}
-      <button onClick={handleReset} className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition cursor-pointer">
+      <button
+        onClick={handleReset}
+        className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition cursor-pointer"
+      >
         Reset
       </button>
     </div>

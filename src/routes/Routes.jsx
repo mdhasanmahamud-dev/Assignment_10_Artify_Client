@@ -9,6 +9,7 @@ import Login from "../pages/AuthPages/Login/Login";
 import Register from "../pages/AuthPages/Register/Register";
 import PageNotFound from "../pages/PageNotFound/PageNotFound";
 import ProtectedRoutes from "./ProtectedRoutes";
+import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails/ArtworkDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +25,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoutes>
             <AddArtwork />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "/artworks/:id",
+        element: (
+          <ProtectedRoutes>
+            <ArtworkDetails />
           </ProtectedRoutes>
         ),
       },

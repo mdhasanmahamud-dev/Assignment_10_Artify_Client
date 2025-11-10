@@ -10,10 +10,12 @@ const ArtWorkProvider = ({ children }) => {
   const [latestArtworks, setLatestArtworks] = useState([]);
   const [latestArtWorkLoading, setLatestArtWorkLoading] = useState(true);
   const [publicArtLoading, setPublicArtLoading] = useState(true);
-
+  const [artDetailLoading, setArtDetailLoading] = useState(true);
+  const [likeLoading, setLikeLoading] = useState(true);
   //Data States
   const [addNewArtsLoading, setAddNewArtsLoading] = useState(true);
   const [publicArtworks, setPublicArtworks] = useState([]);
+  const [artworkDetail, setArtworkDetail] = useState(null);
 
   // Fetch Latest Artworks
   useEffect(() => {
@@ -60,7 +62,6 @@ const ArtWorkProvider = ({ children }) => {
       const response = await apiClient.get(url);
       if (response.data.success) {
         setPublicArtworks(response.data.data);
-        console.log(response.data.data);
       }
     } catch (error) {
       console.log("Error fetching public artworks:", error);
@@ -69,15 +70,49 @@ const ArtWorkProvider = ({ children }) => {
     }
   };
 
+  // Fetch Single Artwork Details
+  const fetchArtworkDetails = async (id) => {
+    setArtDetailLoading(true);
+    try {
+      const response = await apiClient.get(`/artworks/${id}`);
+      console.log(response);
+      if (response.data.success) {
+        setArtworkDetail(response.data.data);
+      }
+    } catch (error) {
+      console.log("Error fetching artwork details:", error);
+    } finally {
+      setArtDetailLoading(false);
+    }
+  };
+
+  //Handle increase like
+  const increaseLike = async (id) => {
+    setLikeLoading(true);
+    try {
+      const response = await apiClient.patch(`/artworks/like/${id}`);
+     console.log(response)
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLikeLoading(false);
+    }
+  };
   const artInfo = {
     latestArtWorkLoading,
     addNewArtsLoading,
     publicArtLoading,
+    artDetailLoading,
+    ////////////////////////
     latestArtworks,
     publicArtworks,
+    artworkDetail,
+    //////////////////////
     setPublicArtworks,
     addNewArt,
     fetchPublicArtworks,
+    fetchArtworkDetails,
+    increaseLike,
   };
   return (
     <ArtWorkContext.Provider value={artInfo}>
