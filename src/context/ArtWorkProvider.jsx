@@ -1,21 +1,24 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { createContext } from "react";
-import axios from "axios";
+import Swal from "sweetalert2";
 import apiClient from "../api/apiClient";
 export const ArtWorkContext = createContext(null);
 import SuccessSweetAlart from "../components/SuccessSweetAlart";
 const ArtWorkProvider = ({ children }) => {
   //Loading States
-  const [latestArtworks, setLatestArtworks] = useState([]);
-  const [latestArtWorkLoading, setLatestArtWorkLoading] = useState(true);
-  const [publicArtLoading, setPublicArtLoading] = useState(true);
-  const [artDetailLoading, setArtDetailLoading] = useState(true);
-  const [likeLoading, setLikeLoading] = useState(true);
+  const [addNewArtsLoading, setAddNewArtsLoading] = useState(false);
+  const [latestArtWorkLoading, setLatestArtWorkLoading] = useState(false);
+  const [publicArtLoading, setPublicArtLoading] = useState(false);
+  const [artDetailLoading, setArtDetailLoading] = useState(false);
+  const [likeLoading, setLikeLoading] = useState(false);
+  const [galleryLoading, setGalleryLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   //Data States
-  const [addNewArtsLoading, setAddNewArtsLoading] = useState(true);
+  const [latestArtworks, setLatestArtworks] = useState([]);
   const [publicArtworks, setPublicArtworks] = useState([]);
   const [artworkDetail, setArtworkDetail] = useState(null);
+  const [myGallery, setMyGallery] = useState([]);
 
   // Fetch Latest Artworks
   useEffect(() => {
@@ -51,7 +54,6 @@ const ArtWorkProvider = ({ children }) => {
       setAddNewArtsLoading(false);
     }
   };
-
   //Fetch Public Artworks
   const fetchPublicArtworks = async (searchTerm = "") => {
     setPublicArtLoading(true);
@@ -91,28 +93,89 @@ const ArtWorkProvider = ({ children }) => {
     setLikeLoading(true);
     try {
       const response = await apiClient.patch(`/artworks/like/${id}`);
-     console.log(response)
+      console.log(response);
     } catch (error) {
       console.log(error);
     } finally {
       setLikeLoading(false);
     }
   };
+
+  //////////////////////////////My Gallery Page related //////////////////////////////
+  // My Gallery Artworks function
+  const fetchMyGallery = async (userEmail) => {
+    if (!userEmail) return;
+    setGalleryLoading(true);
+    try {
+      const response = await apiClient.get(`/my-gallery/${userEmail}`);
+      if (response.data.success) {
+        setMyGallery(response.data.data);
+      }
+    } catch (error) {
+      console.log("Error fetching My Gallery artworks:", error);
+    } finally {
+      setGalleryLoading(false);
+    }
+  };
+
+  // Delete artwork from gallery with confirmation
+  const deleteArtFromGallery = async (id) => {
+    const confirmResult = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
+    if (confirmResult.isConfirmed) {
+      try {
+        setDeleteLoading(true);
+        const response = await apiClient.delete(`/my-gallery/${id}`);
+
+        if (response.data.success) {
+          setMyGallery((prev) => prev.filter((art) => art._id !== id));
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your artwork has been deleted.",
+            icon: "success",
+          });
+        }
+      } catch (error) {
+        console.log(error);
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong while deleting.",
+          icon: "error",
+        });
+      } finally {
+        setDeleteLoading(false);
+      }
+    }
+  };
+
   const artInfo = {
+    ////////loading////////////
     latestArtWorkLoading,
     addNewArtsLoading,
     publicArtLoading,
     artDetailLoading,
-    ////////////////////////
+    galleryLoading,
+    deleteLoading,
+    ///////////state data/////////////
     latestArtworks,
     publicArtworks,
     artworkDetail,
-    //////////////////////
+    myGallery,
+    ///////////function///////////
     setPublicArtworks,
     addNewArt,
     fetchPublicArtworks,
     fetchArtworkDetails,
     increaseLike,
+    fetchMyGallery,
+    deleteArtFromGallery,
   };
   return (
     <ArtWorkContext.Provider value={artInfo}>

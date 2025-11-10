@@ -10,6 +10,7 @@ import Register from "../pages/AuthPages/Register/Register";
 import PageNotFound from "../pages/PageNotFound/PageNotFound";
 import ProtectedRoutes from "./ProtectedRoutes";
 import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails/ArtworkDetails";
+import UpdateGallery from "../pages/MyGallery/UpdateGallery/UpdateGallery";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +37,23 @@ const router = createBrowserRouter([
           </ProtectedRoutes>
         ),
       },
-      { path: "/my-gallery", element: <MyGallery /> },
+      {
+        path: "/my-gallery",
+        element: (
+          <ProtectedRoutes>
+            <MyGallery />
+          </ProtectedRoutes>
+        ),
+      },
+      {
+        path: "/my-gallery/edit/:id",
+        element: (
+          <ProtectedRoutes>
+            <UpdateGallery />
+          </ProtectedRoutes>
+        ),
+      },
+
       { path: "/my-favorites", element: <MyFavorites /> },
     ],
   },
