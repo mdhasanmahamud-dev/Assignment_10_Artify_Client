@@ -1,15 +1,10 @@
 import { Navigate } from "react-router";
 import useUserHook from "../hooks/useUserHook";
+import Spiner from "../components/Spiner";
 
 const ProtectedRoutes = ({ children }) => {
   const { userloading, user } = useUserHook();
-  if (userloading) {
-    return (
-      <div className="text-center text-white py-20 text-xl">
-        Loading...
-      </div>
-    );
-  }
+  if (userloading) return <Spiner />;
   if (!user) {
     return <Navigate to="/login" replace></Navigate>;
   }

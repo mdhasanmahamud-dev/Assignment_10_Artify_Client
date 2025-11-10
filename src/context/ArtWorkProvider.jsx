@@ -14,6 +14,7 @@ const ArtWorkProvider = ({ children }) => {
   const [likeLoading, setLikeLoading] = useState(false);
   const [galleryLoading, setGalleryLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const [updateLoading, setUpdateLoading] = useState(false);
   //Data States
   const [latestArtworks, setLatestArtworks] = useState([]);
   const [publicArtworks, setPublicArtworks] = useState([]);
@@ -155,6 +156,34 @@ const ArtWorkProvider = ({ children }) => {
     }
   };
 
+  //Update Art work
+  const updateArtWork = async (id, updatedData) => {
+    setUpdateLoading(true);
+    try {
+      const response = await apiClient.put(`/my-gallery/${id}`, updatedData);
+      console.log(response)
+      if (response.data.success) {
+        setMyGallery((prev) =>
+          prev.map((art) => (art._id === id ? response.data.data : art))
+        );
+        Swal.fire({
+          title: "Updated!",
+          text: "Your artwork has been updated successfully.",
+          icon: "success",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: "Error!",
+        text: "Something went wrong while updating.",
+        icon: "error",
+      });
+    } finally {
+      setUpdateLoading(false);
+    }
+  };
+
   const artInfo = {
     ////////loading////////////
     latestArtWorkLoading,
@@ -163,6 +192,7 @@ const ArtWorkProvider = ({ children }) => {
     artDetailLoading,
     galleryLoading,
     deleteLoading,
+    updateLoading,
     ///////////state data/////////////
     latestArtworks,
     publicArtworks,
@@ -176,6 +206,7 @@ const ArtWorkProvider = ({ children }) => {
     increaseLike,
     fetchMyGallery,
     deleteArtFromGallery,
+    updateArtWork,
   };
   return (
     <ArtWorkContext.Provider value={artInfo}>
