@@ -1,7 +1,7 @@
 import React from "react";
 
 const FeaturedArtworksCard = ({ art }) => {
-  const { imageUrl, title, artistName, category } = art;
+  const { imageUrl, title, userName, category } = art;
 
   return (
     <div className="group  bg-zinc-900 hover:bg-zinc-950  text-white  overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
@@ -23,7 +23,7 @@ const FeaturedArtworksCard = ({ art }) => {
             {title}
           </h3>
           <p className="text-gray-300 text-sm mb-1">
-            <span className="font-medium">Artist:</span> {artistName}
+            <span className="font-medium">Artist:</span> {userName}
           </p>
           <p className="text-gray-400 text-sm mb-4">
             <span className="font-medium">Category:</span> {category}

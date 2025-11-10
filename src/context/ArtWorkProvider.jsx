@@ -6,10 +6,16 @@ import apiClient from "../api/apiClient";
 export const ArtWorkContext = createContext(null);
 import SuccessSweetAlart from "../components/SuccessSweetAlart";
 const ArtWorkProvider = ({ children }) => {
+  //Loading States
   const [latestArtworks, setLatestArtworks] = useState([]);
   const [latestArtWorkLoading, setLatestArtWorkLoading] = useState(true);
-  const [addNewArtsLoading, setAddNewArtsLoading] = useState(true);
+  const [publicArtLoading, setPublicArtLoading] = useState(true);
 
+  //Data States
+  const [addNewArtsLoading, setAddNewArtsLoading] = useState(true);
+  const [publicArtworks, setPublicArtworks] = useState([]);
+
+  // Fetch Latest Artworks
   useEffect(() => {
     const fetchLatestArtworks = async () => {
       setLatestArtWorkLoading(true);
@@ -27,6 +33,7 @@ const ArtWorkProvider = ({ children }) => {
     fetchLatestArtworks();
   }, []);
 
+  // Add New Art Work
   const addNewArt = async (artWorkData) => {
     setAddNewArtsLoading(true);
     try {
@@ -42,11 +49,35 @@ const ArtWorkProvider = ({ children }) => {
       setAddNewArtsLoading(false);
     }
   };
+
+  //Fetch Public Artworks
+  const fetchPublicArtworks = async (searchTerm = "") => {
+    setPublicArtLoading(true);
+    try {
+      const url = searchTerm
+        ? `/artworks/public?search=${searchTerm}`
+        : `/artworks/public`;
+      const response = await apiClient.get(url);
+      if (response.data.success) {
+        setPublicArtworks(response.data.data);
+        console.log(response.data.data);
+      }
+    } catch (error) {
+      console.log("Error fetching public artworks:", error);
+    } finally {
+      setPublicArtLoading(false);
+    }
+  };
+
   const artInfo = {
     latestArtWorkLoading,
     addNewArtsLoading,
+    publicArtLoading,
     latestArtworks,
+    publicArtworks,
+    setPublicArtworks,
     addNewArt,
+    fetchPublicArtworks,
   };
   return (
     <ArtWorkContext.Provider value={artInfo}>
