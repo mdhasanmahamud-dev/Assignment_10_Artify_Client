@@ -2,8 +2,11 @@ import { NavLink } from "react-router";
 import { CiMenuFries } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { useState } from "react";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 import MobileNavbar from "./MobileNavbar";
 import useUserHook from "../../hooks/useUserHook";
+
 const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
@@ -12,11 +15,17 @@ const Navbar = () => {
     { name: "My Gallery", path: "/my-gallery" },
     { name: "My Favorites", path: "/my-favorites" },
   ];
+
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const closeMenu = () => setShowMobileMenu(false);
   const { userloading, user } = useUserHook();
+
+  const handleLogout = () => {
+    console.log("Logout clicked");
+  };
+
   return (
-    <header className="bg-white  sticky top-0 z-50 border-b">
+    <header className="bg-white sticky top-0 z-50 border-b">
       <div className="container mx-auto px-6 py-3 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="text-2xl font-bold text-indigo-600">
@@ -41,46 +50,53 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className="hidden md:flex">
+        {/* User Section */}
+        <div className="hidden md:flex items-center">
           {user ? (
-            <div className="relative group">
+            <div className="relative">
               <img
                 src={user.photoURL}
                 alt={user.displayName}
+                id="user-img"
                 className="w-10 h-10 rounded-full cursor-pointer"
               />
-              <div className="absolute top-full mt-2 right-0 bg-gray-800 text-white text-sm rounded shadow-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <p>{user.displayName}</p>
-                <button
-                  onClick={() => console.log("Helle")}
-                  className="mt-1 bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white"
-                >
-                  Logout
-                </button>
-              </div>
+
+              <Tooltip
+                anchorId="user-img"
+                place="bottom"
+                clickable={true}
+                className="bg-zinc-800! p-3! rounded!"
+              >
+                <div className="flex flex-col items-start">
+                  <p className="font-semibold text-white">{user.displayName}</p>
+                  <button
+                    onClick={handleLogout}
+                    className="mt-1 bg-red-600 hover:bg-red-700 px-3 py-2 rounded-md text-white w-full cursor-pointer"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </Tooltip>
             </div>
           ) : (
-            <>
-              {/* Auth Buttons */}
-              <div className=" items-center space-x-3">
-                <NavLink
-                  to="/login"
-                  className="px-4 py-2 border border-indigo-600 text-black hover:text-white rounded hover:bg-indigo-600 transition-colors"
-                >
-                  Login
-                </NavLink>
-                <NavLink
-                  to="/register"
-                  className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-500 transition-colors"
-                >
-                  Register
-                </NavLink>
-              </div>
-            </>
+            <div className="items-center space-x-3 flex">
+              <NavLink
+                to="/login"
+                className="px-4 py-2 border border-indigo-600 text-black hover:text-white rounded hover:bg-indigo-600 transition-colors"
+              >
+                Login
+              </NavLink>
+              <NavLink
+                to="/register"
+                className="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-500 transition-colors"
+              >
+                Register
+              </NavLink>
+            </div>
           )}
         </div>
 
-        {/* Mobile Menu Icon Toggle*/}
+        {/* Mobile Menu Icon Toggle */}
         <div className="md:hidden">
           <button
             onClick={() => setShowMobileMenu(!showMobileMenu)}
@@ -90,6 +106,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+
       {/* Mobile Menu */}
       {showMobileMenu && (
         <MobileNavbar navItems={navItems} closeMenu={closeMenu} />
