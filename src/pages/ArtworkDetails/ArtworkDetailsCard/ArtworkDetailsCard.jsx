@@ -1,16 +1,24 @@
 import { FaHeart, FaStar } from "react-icons/fa";
 import useUserHook from "../../../hooks/useUserHook";
 import useArtWorkHook from "../../../hooks/useArtWorkHook";
+import useFavoriteHook from "../../../hooks/useFavoriteHook";
 
 const ArtworkDetailsCard = ({ artworkDetail }) => {
   const { user } = useUserHook();
-  const { increaseLike } = useArtWorkHook();
+  const { likeLoading, increaseLike, like } = useArtWorkHook();
+  const { addLoading, addToFavorite } = useFavoriteHook();
 
   // Like button click handler
   const handleLike = async () => {
     if (!artworkDetail?._id) return;
     await increaseLike(artworkDetail._id);
     console.log("Like updated successfully!");
+  };
+
+  // Favorite button click handler
+  const handleAddFavorite = async () => {
+    if (!user?.email || !artworkDetail?._id) return;
+    await addToFavorite(user.email, artworkDetail); 
   };
 
   return (
@@ -50,31 +58,42 @@ const ArtworkDetailsCard = ({ artworkDetail }) => {
             </p>
           </div>
 
-          {/* Artist Info (Static) */}
-          <div className="flex items-center gap-4 border-t border-zinc-700 pt-4">
-            <img
-              src={user?.photoURL}
-              alt="Artist Name"
-              className="w-16 h-16 rounded-full object-cover border-2 border-teal-400"
-            />
-            <div>
-              <p className="font-semibold text-white">
-                {artworkDetail?.userName}
-              </p>
-              <p className="text-gray-400 text-sm">5 Artworks</p>
+          {/* Artist Info () */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4 border-t border-zinc-700 pt-4">
+              <img
+                src={user?.photoURL}
+                alt="Artist Name"
+                className="w-16 h-16 rounded-full object-cover border-2 border-teal-400"
+              />
+              <div>
+                <p className="font-semibold text-white">
+                  {artworkDetail?.userName}
+                </p>
+                <p className="text-gray-400 text-sm">5 Artworks</p>
+              </div>
             </div>
+            <button className="border border-zinc-700 px-3 py-1.5 rounded-md text-sm">
+              Likes {like}
+            </button>
           </div>
 
           {/* Action Buttons (Static) */}
           <div className="flex gap-4 mt-4">
             <button
+              disabled={likeLoading}
               onClick={handleLike}
               className="flex-1 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-md transition-all duration-300 cursor-pointer"
             >
-              <FaHeart /> Like
+              <FaHeart />
+              {likeLoading ? "liking..." : "Like"}
             </button>
-            <button className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-5 py-2 rounded-md  transition-all duration-300 cursor-pointer">
-              <FaStar /> Add to Favorites
+            <button
+              onClick={handleAddFavorite}
+              disabled={addLoading}
+              className="flex-1 flex items-center justify-center gap-2 text-white font-semibold px-5 py-2 rounded-md transition-all duration-300 cursor-pointer bg-indigo-700 hover:bg-indigo-600"
+            >
+              <FaStar /> {addLoading ? "Adding..." : "Add to Favorites"}
             </button>
           </div>
         </div>

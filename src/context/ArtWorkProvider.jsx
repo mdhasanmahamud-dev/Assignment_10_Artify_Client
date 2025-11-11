@@ -21,9 +21,9 @@ const ArtWorkProvider = ({ children }) => {
   const [publicArtworks, setPublicArtworks] = useState([]);
   const [artworkDetail, setArtworkDetail] = useState(null);
   const [myGallery, setMyGallery] = useState([]);
+  const [like, setLike] = useState();
 
-
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
 
   // Fetch Latest Artworks
   useEffect(() => {
@@ -82,9 +82,9 @@ const ArtWorkProvider = ({ children }) => {
     setArtDetailLoading(true);
     try {
       const response = await apiClient.get(`/artworks/${id}`);
-      console.log(response);
       if (response.data.success) {
         setArtworkDetail(response.data.data);
+        setLike(response.data.data.like);
       }
     } catch (error) {
       console.log("Error fetching artwork details:", error);
@@ -98,7 +98,9 @@ const ArtWorkProvider = ({ children }) => {
     setLikeLoading(true);
     try {
       const response = await apiClient.patch(`/artworks/like/${id}`);
-      console.log(response);
+      if (response.data.success) {
+        setLike(response.data.data.like);
+      }
     } catch (error) {
       console.log(error);
     } finally {
@@ -165,7 +167,7 @@ const ArtWorkProvider = ({ children }) => {
     setUpdateLoading(true);
     try {
       const response = await apiClient.put(`/my-gallery/${id}`, updatedData);
-      console.log(response)
+      console.log(response);
       if (response.data.success) {
         setMyGallery((prev) =>
           prev.map((art) => (art._id === id ? response.data.data : art))
@@ -197,6 +199,8 @@ const ArtWorkProvider = ({ children }) => {
     galleryLoading,
     deleteLoading,
     updateLoading,
+    likeLoading,
+    like,
     ///////////state data/////////////
     latestArtworks,
     publicArtworks,

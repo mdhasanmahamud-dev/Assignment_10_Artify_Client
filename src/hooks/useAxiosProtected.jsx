@@ -4,12 +4,11 @@ import useUserHook from "./useUserHook";
 
 const useAxiosSecure = () => {
   const { user } = useUserHook();
-  console.log(user);
   useEffect(() => {
     const requestInterceptor = apiClient.interceptors.request.use(
       (config) => {
         if (user?.accessToken) {
-          config.headers.Authorization = `Bearer ${user.accessToken}`;
+          config.headers.Authorization = `Bearer ${user?.accessToken}`;
         }
         return config;
       },

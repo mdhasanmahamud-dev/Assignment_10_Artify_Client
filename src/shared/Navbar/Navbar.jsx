@@ -5,7 +5,6 @@ import { FaUserAlt } from "react-icons/fa";
 import { useState } from "react";
 import MobileNavbar from "./MobileNavbar";
 import useUserHook from "../../hooks/useUserHook";
-import useArtWorkHook from "../../hooks/useArtWorkHook";
 const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
@@ -17,7 +16,6 @@ const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const closeMenu = () => setShowMobileMenu(false);
   const { userloading, user } = useUserHook();
-  const {name} = useArtWorkHook();
   return (
     <header className="bg-white  sticky top-0 z-50 border-b">
       <div className="container mx-auto px-6 py-3 flex items-center justify-between">
