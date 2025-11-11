@@ -1,9 +1,20 @@
 import React from "react";
-import {  FaHeartBroken } from "react-icons/fa";
+import { FaHeartBroken } from "react-icons/fa";
+import useFavoriteHook from "../../../hooks/useFavoriteHook";
 
 const MyFavoriteCard = ({ fav }) => {
-  const { title, imageUrl, category, medium, description, userEmail } = fav;
+  console.log(fav._id);
+  const { _id, title, imageUrl, category, medium, description, userEmail } =
+    fav;
 
+  const { deleteArtFromFavorite } = useFavoriteHook();
+  const handleDeleteArtworkFromFavorite = async () => {
+    try {
+      await deleteArtFromFavorite(_id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="group bg-zinc-900 hover:bg-zinc-950 text-white overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 rounded-lg flex flex-col">
       {/* Image */}
@@ -36,7 +47,10 @@ const MyFavoriteCard = ({ fav }) => {
         </div>
 
         {/* Bottom Button */}
-        <button className="mt-4 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-md transition-all duration-300 cursor-pointer w-full">
+        <button
+          onClick={handleDeleteArtworkFromFavorite}
+          className="mt-4 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-md transition-all duration-300 cursor-pointer w-full"
+        >
           <FaHeartBroken /> Unfavorite
         </button>
       </div>

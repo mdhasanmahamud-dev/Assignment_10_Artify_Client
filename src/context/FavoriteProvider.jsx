@@ -7,7 +7,10 @@ export const FavoriteContext = createContext(null);
 const FavoriteProvider = ({ children }) => {
   const [addLoading, setAddLoading] = useState(false);
   const [fetchLoading, setFetchLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
+
   const [favorite, setFavorite] = useState([]);
+
   const addToFavorite = async (userEmail, artwork) => {
     if (!userEmail || !artwork?._id) return;
     setAddLoading(true);
@@ -45,14 +48,34 @@ const FavoriteProvider = ({ children }) => {
     }
   };
 
+  const deleteArtFromFavorite = async (id) => {
+    if (!id) return;
+    try {
+      const response = await apiClient.delete(`/my-favorite/${id}`);
+
+      if (response.data.success) {
+        setFavorite((prev) => prev.filter((fav) => fav._id !== id));
+        toast.success("Artwork removed from favorites successfully");
+      } else {
+        toast.error(response.data.message || "Failed to remove artwork");
+      }
+    } catch (error) {
+      console.error("Error removing favorite artwork:", error.message);
+      toast.error("Something went wrong while removing the favorite artwork");
+    }
+  };
+
   const favoriteInfo = {
+    //.........loading.........../
     addLoading,
     fetchLoading,
-    /////////////
+    deleteLoading,
+    //............Data.............../
     favorite,
-    //////////////
+    //...........function............/
     addToFavorite,
     fetchFavorite,
+    deleteArtFromFavorite,
   };
   return (
     <FavoriteContext.Provider value={favoriteInfo}>
