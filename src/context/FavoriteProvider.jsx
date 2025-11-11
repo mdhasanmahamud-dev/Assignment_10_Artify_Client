@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import apiClient from "../api/apiClient";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../hooks/useAxiosProtected";
 
 export const FavoriteContext = createContext(null);
 
@@ -11,11 +12,13 @@ const FavoriteProvider = ({ children }) => {
 
   const [favorite, setFavorite] = useState([]);
 
+  const axiosSecure = useAxiosSecure();
+
   const addToFavorite = async (userEmail, artwork) => {
     if (!userEmail || !artwork?._id) return;
     setAddLoading(true);
     try {
-      const response = await apiClient.post(`/my-favorite`, {
+      const response = await axiosSecure.post(`/my-favorite`, {
         userEmail,
         artwork,
       });
@@ -37,7 +40,7 @@ const FavoriteProvider = ({ children }) => {
     if (!email) return;
     setFetchLoading(true);
     try {
-      const response = await apiClient.get(`/my-favorite/${email}`);
+      const response = await axiosSecure.get(`/my-favorite/${email}`);
       if (response.data.success) {
         setFavorite(response.data.data);
       }
@@ -50,8 +53,9 @@ const FavoriteProvider = ({ children }) => {
 
   const deleteArtFromFavorite = async (id) => {
     if (!id) return;
+    setDeleteLoading(true);
     try {
-      const response = await apiClient.delete(`/my-favorite/${id}`);
+      const response = await axiosSecure.delete(`/my-favorite/${id}`);
 
       if (response.data.success) {
         setFavorite((prev) => prev.filter((fav) => fav._id !== id));
@@ -62,6 +66,8 @@ const FavoriteProvider = ({ children }) => {
     } catch (error) {
       console.error("Error removing favorite artwork:", error.message);
       toast.error("Something went wrong while removing the favorite artwork");
+    } finally {
+      setDeleteLoading(false);
     }
   };
 

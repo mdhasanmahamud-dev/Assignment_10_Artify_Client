@@ -66,7 +66,7 @@ const ArtWorkProvider = ({ children }) => {
       const url = searchTerm
         ? `/artworks/public?search=${searchTerm}`
         : `/artworks/public`;
-      const response = await axiosSecure.get(url);
+      const response = await apiClient.get(url);
       if (response.data.success) {
         setPublicArtworks(response.data.data);
       }
