@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import apiClient from "../api/apiClient";
 export const ArtWorkContext = createContext(null);
 import SuccessSweetAlart from "../components/SuccessSweetAlart";
+import useAxiosSecure from "../hooks/useAxiosProtected";
 const ArtWorkProvider = ({ children }) => {
   //Loading States
   const [addNewArtsLoading, setAddNewArtsLoading] = useState(false);
@@ -20,6 +21,9 @@ const ArtWorkProvider = ({ children }) => {
   const [publicArtworks, setPublicArtworks] = useState([]);
   const [artworkDetail, setArtworkDetail] = useState(null);
   const [myGallery, setMyGallery] = useState([]);
+
+
+  const axiosSecure = useAxiosSecure()
 
   // Fetch Latest Artworks
   useEffect(() => {
@@ -62,7 +66,7 @@ const ArtWorkProvider = ({ children }) => {
       const url = searchTerm
         ? `/artworks/public?search=${searchTerm}`
         : `/artworks/public`;
-      const response = await apiClient.get(url);
+      const response = await axiosSecure.get(url);
       if (response.data.success) {
         setPublicArtworks(response.data.data);
       }

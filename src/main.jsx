@@ -8,10 +8,10 @@ import ArtWorkProvider from "./context/ArtWorkProvider";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ArtWorkProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <ArtWorkProvider>
         <RouterProvider router={router} />
-      </AuthProvider>
-    </ArtWorkProvider>
+      </ArtWorkProvider>
+    </AuthProvider>
   </StrictMode>
 );
