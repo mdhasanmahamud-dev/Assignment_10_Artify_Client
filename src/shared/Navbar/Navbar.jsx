@@ -21,8 +21,7 @@ const Navbar = () => {
   const { userloading, user, logOutUser } = useUserHook();
 
   const handleLogout = async () => {
-    console.log("Logout clicked");
-    await logOutUser()
+    await logOutUser();
   };
 
   return (
@@ -72,7 +71,7 @@ const Navbar = () => {
                   <p className="font-semibold text-white">{user.displayName}</p>
                   <button
                     onClick={handleLogout}
-                    className="mt-1 bg-red-600 hover:bg-red-700 px-3 py-2 rounded-md text-white w-full cursor-pointer"
+                    className=" bg-red-600 hover:bg-red-700 px-3 py-1 rounded-md text-white w-full cursor-pointer"
                   >
                     Logout
                   </button>
@@ -99,12 +98,22 @@ const Navbar = () => {
 
         {/* Mobile Menu Icon Toggle */}
         <div className="md:hidden">
-          <button
-            onClick={() => setShowMobileMenu(!showMobileMenu)}
-            className="text-2xl text-gray-800 focus:outline-none cursor-pointer"
-          >
-            {showMobileMenu ? <RxCross2 /> : <CiMenuFries />}
-          </button>
+          <div className="flex items-center gap-4">
+            {user && (
+              <img
+                src={user?.photoURL}
+                title={user?.displayName}
+                alt={user?.displayName}
+                className="w-8 h-8 rounded-full cursor-pointer"
+              />
+            )}
+            <button
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+              className="text-2xl text-gray-800 focus:outline-none cursor-pointer"
+            >
+              {showMobileMenu ? <RxCross2 /> : <CiMenuFries />}
+            </button>
+          </div>
         </div>
       </div>
 
