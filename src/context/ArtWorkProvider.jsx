@@ -47,7 +47,7 @@ const ArtWorkProvider = ({ children }) => {
   const addNewArt = async (artWorkData) => {
     setAddNewArtsLoading(true);
     try {
-      const response = await apiClient.post("/artworks", artWorkData);
+      const response = await axiosSecure.post("/artworks", artWorkData);
       if (response.data.success) {
         setLatestArtworks((prev) => [response.data.data, ...prev]);
       }
@@ -81,7 +81,7 @@ const ArtWorkProvider = ({ children }) => {
   const fetchArtworkDetails = async (id) => {
     setArtDetailLoading(true);
     try {
-      const response = await apiClient.get(`/artworks/${id}`);
+      const response = await axiosSecure.get(`/artworks/${id}`);
       if (response.data.success) {
         setArtworkDetail(response.data.data);
         setLike(response.data.data.like);
@@ -97,7 +97,7 @@ const ArtWorkProvider = ({ children }) => {
   const increaseLike = async (id) => {
     setLikeLoading(true);
     try {
-      const response = await apiClient.patch(`/artworks/like/${id}`);
+      const response = await axiosSecure.patch(`/artworks/like/${id}`);
       if (response.data.success) {
         setLike(response.data.data.like);
       }
@@ -114,7 +114,7 @@ const ArtWorkProvider = ({ children }) => {
     if (!userEmail) return;
     setGalleryLoading(true);
     try {
-      const response = await apiClient.get(`/my-gallery/${userEmail}`);
+      const response = await axiosSecure.get(`/my-gallery/${userEmail}`);
       if (response.data.success) {
         setMyGallery(response.data.data);
       }
@@ -139,7 +139,7 @@ const ArtWorkProvider = ({ children }) => {
     if (confirmResult.isConfirmed) {
       try {
         setDeleteLoading(true);
-        const response = await apiClient.delete(`/my-gallery/${id}`);
+        const response = await axiosSecure.delete(`/my-gallery/${id}`);
 
         if (response.data.success) {
           setMyGallery((prev) => prev.filter((art) => art._id !== id));
@@ -166,7 +166,7 @@ const ArtWorkProvider = ({ children }) => {
   const updateArtWork = async (id, updatedData) => {
     setUpdateLoading(true);
     try {
-      const response = await apiClient.put(`/my-gallery/${id}`, updatedData);
+      const response = await axiosSecure.put(`/my-gallery/${id}`, updatedData);
       console.log(response);
       if (response.data.success) {
         setMyGallery((prev) =>

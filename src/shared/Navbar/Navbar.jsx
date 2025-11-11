@@ -1,7 +1,6 @@
 import { NavLink } from "react-router";
 import { CiMenuFries } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
-import { FaUserAlt } from "react-icons/fa";
 import { useState } from "react";
 import MobileNavbar from "./MobileNavbar";
 import useUserHook from "../../hooks/useUserHook";
@@ -44,12 +43,21 @@ const Navbar = () => {
 
         <div className="hidden md:flex">
           {user ? (
-            <div className="bg-green-200 hover:bg-green-300 p-1 rounded-full border-none outline-none ">
+            <div className="relative group">
               <img
-                className="size-10 rounded-full cursor-pointer hover:scale-105 transition-all duration-200 ease-in-out"
                 src={user.photoURL}
-                alt=""
+                alt={user.displayName}
+                className="w-10 h-10 rounded-full cursor-pointer"
               />
+              <div className="absolute top-full mt-2 right-0 bg-gray-800 text-white text-sm rounded shadow-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <p>{user.displayName}</p>
+                <button
+                  onClick={() => console.log("Helle")}
+                  className="mt-1 bg-red-600 hover:bg-red-700 px-3 py-1 rounded text-white"
+                >
+                  Logout
+                </button>
+              </div>
             </div>
           ) : (
             <>

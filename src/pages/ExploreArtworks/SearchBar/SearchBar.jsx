@@ -23,7 +23,7 @@ const SearchBar = () => {
       {/* Search Input */}
       <input
         type="text"
-        placeholder="Search by title or artist name..."
+        placeholder="Search by title category or artist name........."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="
