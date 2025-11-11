@@ -2,12 +2,20 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaEyeSlash, FaGoogle } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
-import { NavLink } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import useUserHook from "../../../hooks/useUserHook";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { userloading, loginUser, signInWithGoogle } = useUserHook();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
+  console.log("Current location state:", location.state);
+  console.log("Calculated redirection path (from):", from);
+  
   const {
     register,
     handleSubmit,
@@ -18,6 +26,7 @@ const Login = () => {
     try {
       const result = await loginUser(data.email, data.password);
       console.log(result.user);
+      navigate(from, { replace: true });
     } catch (error) {
       console.error(error);
     }
@@ -27,7 +36,7 @@ const Login = () => {
     try {
       const result = await signInWithGoogle();
       if (result) {
-        navigate("/"); // login successful → home page
+        navigate(from, { replace: true });
       }
     } catch (error) {
       console.error("Google login error:", error);
