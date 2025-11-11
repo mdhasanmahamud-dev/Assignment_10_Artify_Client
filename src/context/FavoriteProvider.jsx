@@ -6,7 +6,7 @@ export const FavoriteContext = createContext(null);
 
 const FavoriteProvider = ({ children }) => {
   const [addLoading, setAddLoading] = useState(false);
-  const [fetchLoading, setFetchLoading] = useState(favorite);
+  const [fetchLoading, setFetchLoading] = useState(false);
   const [favorite, setFavorite] = useState([]);
   const addToFavorite = async (userEmail, artwork) => {
     if (!userEmail || !artwork?._id) return;
@@ -37,17 +37,23 @@ const FavoriteProvider = ({ children }) => {
       const response = await apiClient.get(`/my-favorite/${email}`);
       if (response.data.success) {
         setFavorite(response.data.data);
-        toast.success("Favorites fetched successfully!");
-      } else {
-        toast.error(response.data.message || "Failed to fetch favorites!");
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || "Internal Server Error!");
+      console.log(error);
     } finally {
       setFetchLoading(false);
     }
   };
-  const favoriteInfo = { addLoading, addToFavorite, fetchFavorite };
+
+  const favoriteInfo = {
+    addLoading,
+    fetchLoading,
+    /////////////
+    favorite,
+    //////////////
+    addToFavorite,
+    fetchFavorite,
+  };
   return (
     <FavoriteContext.Provider value={favoriteInfo}>
       {children}
