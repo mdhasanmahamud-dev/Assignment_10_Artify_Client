@@ -1,5 +1,6 @@
 import React from "react";
 import SectionTitle from "../../../components/SectionTitle";
+import CommunityHighlightCard from "./CommunityHighlightCard";
 
 const CommunityHighlights = () => {
   return (
@@ -8,6 +9,7 @@ const CommunityHighlights = () => {
         title="Community Highlights"
         subTitle="Explore the most engaging creations and activities from our vibrant community"
       />
+      <CommunityHighlightCard />
     </div>
   );
 };
