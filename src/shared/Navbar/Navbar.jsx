@@ -18,10 +18,11 @@ const Navbar = () => {
 
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const closeMenu = () => setShowMobileMenu(false);
-  const { userloading, user } = useUserHook();
+  const { userloading, user, logOutUser } = useUserHook();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     console.log("Logout clicked");
+    await logOutUser()
   };
 
   return (
