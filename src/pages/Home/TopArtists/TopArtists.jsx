@@ -1,13 +1,15 @@
 import React from "react";
 import SectionTitle from "../../../components/SectionTitle";
+import TopArtistsCard from "./TopArtistsCard";
 
 const TopArtists = () => {
   return (
-    <div className="py-10">
+    <div className="py-10 bg-black">
       <SectionTitle
         title="Top Artists"
         subTitle="Celebrating the most creative minds"
       />
+      <TopArtistsCard />
     </div>
   );
 };
