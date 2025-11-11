@@ -80,7 +80,7 @@ const ArtworkDetailsCard = ({ artworkDetail }) => {
           </div>
 
           {/* Action Buttons (Static) */}
-          <div className="flex gap-4 mt-4">
+          <div className="flex flex-col md:flex-row gap-2  md:gap-4 mt-4">
             <button
               disabled={likeLoading}
               onClick={handleLike}
