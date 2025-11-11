@@ -44,7 +44,7 @@ const MyGalleryCard = ({ gallery }) => {
         </div>
 
         {/*  Likes  Action Buttons */}
-        <div className="flex items-center justify-between mt-4">
+        <div className="flex items-center justify-between">
           {/* Likes */}
           <p className="text-gray-400 text-sm flex items-center gap-1">
             <span className="font-medium">Likes:</span> {like}
