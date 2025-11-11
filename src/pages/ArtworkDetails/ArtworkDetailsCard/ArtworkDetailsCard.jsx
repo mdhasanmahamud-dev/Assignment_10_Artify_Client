@@ -4,6 +4,7 @@ import useArtWorkHook from "../../../hooks/useArtWorkHook";
 import useFavoriteHook from "../../../hooks/useFavoriteHook";
 
 const ArtworkDetailsCard = ({ artworkDetail }) => {
+  console.log(artworkDetail)
   const { user } = useUserHook();
   const { likeLoading, increaseLike, like } = useArtWorkHook();
   const { addLoading, addToFavorite } = useFavoriteHook();
@@ -70,7 +71,7 @@ const ArtworkDetailsCard = ({ artworkDetail }) => {
                 <p className="font-semibold text-white">
                   {artworkDetail?.userName}
                 </p>
-                <p className="text-gray-400 text-sm">5 Artworks</p>
+                <p className="text-gray-400 text-sm">{artworkDetail?.totalArtworks} Artworks</p>
               </div>
             </div>
             <button className="border border-zinc-700 px-3 py-1.5 rounded-md text-sm">
