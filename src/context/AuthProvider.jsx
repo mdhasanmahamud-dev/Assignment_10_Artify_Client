@@ -64,7 +64,7 @@ const AuthProvider = ({ children }) => {
     try {
       setUserLoading(true);
       await signOut(auth);
-      toast.success("User Logout successfull")
+      toast.success("User Logout successfull");
     } catch (error) {
       console.error("Error logging out:", error);
     } finally {
@@ -80,6 +80,7 @@ const AuthProvider = ({ children }) => {
       const result = await signInWithPopup(auth, googleProvider);
       toast.success("Signed in with Google!");
       console.log(result.user);
+      return result.user;
     } catch (error) {
       toast.error("Google login failed!");
       console.error("Error signing in with Google:", error);

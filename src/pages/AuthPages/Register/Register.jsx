@@ -26,8 +26,8 @@ const Register = () => {
           displayName: data.name,
           photoURL: data.photo,
         });
+        navigate("/");
       }
-      navigate("/");
     } catch (error) {
       console.error(error);
     }
