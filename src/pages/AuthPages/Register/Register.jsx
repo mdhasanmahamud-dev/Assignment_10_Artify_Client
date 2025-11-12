@@ -125,6 +125,11 @@ const Register = () => {
                     value: 6,
                     message: "Password must be at least 6 characters",
                   },
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/,
+                    message:
+                      "Password must contain at least one uppercase and one lowercase letter",
+                  },
                 })}
                 type={showPassword ? "text" : "password"}
                 placeholder="***********"

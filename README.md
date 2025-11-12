@@ -1,16 +1,23 @@
-# React + Vite
+# ARTIFY – সৃজনশীল আর্টওয়ার্ক প্রদর্শন প্ল্যাটফর্ম
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ## Overview
+ARTIFY একটি অনলাইন আর্ট-শেয়ারিং প্ল্যাটফর্ম যা শিল্পীদের জন্য তৈরি। এই ওয়েবসাইটে ব্যবহারকারী পেতে পারেন: সৃজনশীল কাজ আপলোড ও প্রদর্শন, অন্য শিল্পীদের গ্যালারি ঘুরে দেখা, পছন্দের আর্টওয়ার্ক সংগ্রহ এবং পারস্পরিক প্রশংসা ও যোগাযোগের মাধ্যমে সংযুক্ত থাকা। SPA হিসেবে তৈরি, React + Firebase + Tailwind CSS + MongoDB and extra mongoose ব্যবহার করে।
 
-Currently, two official plugins are available:
+## ## LIVE LINK
+[আপনার প্রকাশিত ওয়েবসাইটের URL দিন]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ## Features
+- Authentication: Email/Password & Google Sign-In 
+- Password Validation: At least 1 Uppercase, 1 Lowercase, min 6 characters 
+- Profile Management: Update name & photo
+- Responsive Design: Mobile, Tablet, Desktop 
+- Animations: react-awesome-reveal, Swiper.js 
+- SPA Behavior: No errors on route reloads (Protected routes maintain session)
+- Services: Full CRUD (Add, Update, Delete) on user's artworks in 'My Gallery'
+- Like System: MongoDB $inc for real-time like counting
+- Filter System: Category-wise filtering on 'Explore Artworks' page
+- Theme Toggle: Dark/Light Mode stored in localStorage
+- Feedback: Toast/SweetAlert used for all user feedback (No default alert())
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ## Tech Stack
+React, React Router, Firebase Authentication, Tailwind CSS, Node.js, Express.js, MongoDB, react-awesome-reveal, react-tooltip, Swiper.js, React Icons
