@@ -47,7 +47,7 @@ const Navbar = () => {
   }, [theme]);
 
   return (
-    <header className="bg-white sticky top-0 z-50 border-b">
+    <header className="bg-white sticky top-0 z-50">
       <div className="container mx-auto px-6 py-3 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="text-2xl font-bold text-indigo-600">
