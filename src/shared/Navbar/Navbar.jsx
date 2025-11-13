@@ -47,23 +47,26 @@ const Navbar = () => {
   }, [theme]);
 
   return (
-    <header className="bg-white sticky top-0 z-50">
+    <header className="bg-gray-50 dark:bg-zinc-900 sticky top-0 z-50 shadow-sm dark:shadow-none transition-colors">
       <div className="container mx-auto px-6 py-3 flex items-center justify-between">
         {/* Logo */}
-        <NavLink to="/" className="text-2xl font-bold text-indigo-600">
+        <NavLink
+          to="/"
+          className="text-2xl font-bold text-indigo-600 dark:text-indigo-400"
+        >
           Artify
         </NavLink>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex items-center space-x-4 text-gray-700">
+        <ul className="hidden md:flex items-center space-x-4 text-gray-700 dark:text-gray-300">
           {navItems.map((item) => (
             <li key={item.path}>
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
                   isActive
-                    ? "text-indigo-600 font-semibold border-b-2 pb-1 transition-all ease-in-out duration-00"
-                    : "hover:text-indigo-600 transition-colors"
+                    ? "text-indigo-600 dark:text-indigo-400 font-semibold border-b-2 pb-1 transition-all duration-200"
+                    : "hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 }
               >
                 {item.name}
@@ -73,68 +76,49 @@ const Navbar = () => {
         </ul>
 
         {/* User Section */}
-        <div className="hidden md:flex items-center">
+        <div className="hidden md:flex items-center gap-3">
+          {/* Theme Toggle */}
+          <button
+            onClick={handleToggle}
+            className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300"
+          >
+            <CiLight
+              className={`text-2xl ${
+                theme === "light" ? "text-black" : "text-white"
+              }`}
+            />
+          </button>
+
           {user ? (
-            <div className="flex items-center gap-3 relative">
-              {/* Light Icon */}
-              <button
-                onClick={handleToggle}
-                className="p-2 bg-linear-to-r from-gray-500 to-gray-700 rounded-full  transition-colors duration-300"
+            <div className="relative">
+              <img
+                src={user.photoURL}
+                alt={user.displayName}
+                id="user-img"
+                className="w-10 h-10 rounded-full cursor-pointer"
+              />
+              <Tooltip
+                anchorId="user-img"
+                place="bottom"
+                clickable={true}
+                className="bg-zinc-800 p-3 rounded"
               >
-                <CiLight
-                  className={`text-2xl ${
-                    theme === "light" ? "text-black" : "text-white"
-                  }`}
-                />
-              </button>
-
-              {/* User Image */}
-              <div className="relative">
-                <img
-                  src={user.photoURL}
-                  alt={user.displayName}
-                  id="user-img"
-                  className="w-10 h-10 rounded-full cursor-pointer"
-                />
-
-                <Tooltip
-                  anchorId="user-img"
-                  place="bottom"
-                  clickable={true}
-                  className="bg-zinc-800! p-3! rounded!"
-                >
-                  <div className="flex flex-col items-start">
-                    <p className="font-semibold text-white">
-                      {user.displayName}
-                    </p>
-                    <button
-                      onClick={handleLogout}
-                      className=" bg-red-600 hover:bg-red-700 px-3 py-1 rounded-md text-white w-full cursor-pointer"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                </Tooltip>
-              </div>
+                <div className="flex flex-col items-start">
+                  <p className="font-semibold text-white">{user.displayName}</p>
+                  <button
+                    onClick={handleLogout}
+                    className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded-md text-white w-full cursor-pointer"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </Tooltip>
             </div>
           ) : (
-            <div className="flex items-center gap-3">
-              {/* Light Icon */}
-              <button
-                onClick={handleToggle}
-                className="p-2 bg-linear-to-r from-gray-500 to-gray-700 rounded-full  transition-colors duration-300"
-              >
-                <CiLight
-                  className={`text-2xl ${
-                    theme === "light" ? "text-black" : "text-white"
-                  }`}
-                />
-              </button>
-
-              {/* Login / Register */}
+            <>
               <NavLink
                 to="/login"
-                className="px-4 py-2 border border-indigo-600 text-black hover:text-white rounded hover:bg-indigo-600 transition-colors"
+                className="px-4 py-2 border border-indigo-600 text-black dark:text-white hover:text-white rounded hover:bg-indigo-600 transition-colors"
               >
                 Login
               </NavLink>
@@ -144,39 +128,41 @@ const Navbar = () => {
               >
                 Register
               </NavLink>
-            </div>
+            </>
           )}
         </div>
 
         {/* Mobile Menu Icon Toggle */}
-        <div className="md:hidden">
-          <div className="flex items-center gap-4">
-            <button
-              onClick={handleToggle}
-              className="p-2 bg-linear-to-r from-gray-500 to-gray-700 rounded-full  transition-colors duration-300"
-            >
-              <CiLight
-                className={`text-2xl ${
-                  theme === "light" ? "text-black" : "text-white"
-                }`}
-              />
-            </button>
+        <div className="md:hidden flex items-center gap-4">
+          {/* Theme Toggle */}
+          <button
+            onClick={handleToggle}
+            className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300"
+          >
+            <CiLight
+              className={`text-2xl ${
+                theme === "light" ? "text-black" : "text-white"
+              }`}
+            />
+          </button>
 
-            {user && (
-              <img
-                src={user?.photoURL}
-                title={user?.displayName}
-                alt={user?.displayName}
-                className="w-8 h-8 rounded-full cursor-pointer"
-              />
-            )}
-            <button
-              onClick={() => setShowMobileMenu(!showMobileMenu)}
-              className="text-2xl text-gray-800 focus:outline-none cursor-pointer"
-            >
-              {showMobileMenu ? <RxCross2 /> : <CiMenuFries />}
-            </button>
-          </div>
+          {/* User Image */}
+          {user && (
+            <img
+              src={user.photoURL}
+              title={user.displayName}
+              alt={user.displayName}
+              className="w-8 h-8 rounded-full cursor-pointer"
+            />
+          )}
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setShowMobileMenu(!showMobileMenu)}
+            className="text-2xl text-gray-800 dark:text-gray-200 focus:outline-none cursor-pointer"
+          >
+            {showMobileMenu ? <RxCross2 /> : <CiMenuFries />}
+          </button>
         </div>
       </div>
 
