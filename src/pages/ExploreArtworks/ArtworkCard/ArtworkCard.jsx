@@ -1,10 +1,10 @@
 import { NavLink } from "react-router";
 
 const ArtworkCard = ({ art }) => {
-  const { _id, imageUrl, title, userName, category , like} = art;
+  const { _id, imageUrl, title, userName, category, like } = art;
 
   return (
-    <div  className="group bg-zinc-900 hover:bg-zinc-950 text-white overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 pb-2">
+    <div className="group bg-zinc-900 hover:bg-zinc-950 text-white overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 pb-2">
       {/* Image */}
       <img
         src={imageUrl}
@@ -14,16 +14,7 @@ const ArtworkCard = ({ art }) => {
 
       {/* Content */}
       <div
-        className="
-          p-6 
-          flex flex-col justify-between 
-          h-52 
-          border-l border-r border-b border-transparent
-          group-hover:border-l group-hover:border-r group-hover:border-b group-hover:border-teal-400
-          transition-all duration-300 ease-in-out
-          bg-zinc-900 group-hover:bg-zinc-950
-          rounded-b-sm
-        "
+        className=" p-6  flex flex-col justify-between  h-52  border-l border-r border-b border-transparent dark:group-hover:border-l dark:group-hover:border-r dark:group-hover:border-b dark:group-hover:border-teal-400 transition-all duration-300 ease-in-out bg-zinc-900 group-hover:bg-zinc-950 rounded-b-sm"
       >
         <div>
           <div>

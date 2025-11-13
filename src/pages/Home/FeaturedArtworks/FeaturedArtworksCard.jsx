@@ -17,9 +17,16 @@ const FeaturedArtworksCard = ({ art }) => {
 
       {/* Content */}
       <div
-        className="p-6 flex flex-col justify-between h-52 border-l border-r border-b border-transparent 
-                   group-hover:border-l group-hover:border-r group-hover:border-b group-hover:border-teal-400 
-                   transition-all duration-300 ease-in-out bg-zinc-900 group-hover:bg-zinc-950 rounded-b-sm"
+        className="
+  p-6 
+  flex flex-col justify-between 
+  h-52 
+  border-l border-r border-b border-transparent
+  dark:group-hover:border-l dark:group-hover:border-r dark:group-hover:border-b dark:group-hover:border-teal-400
+  transition-all duration-300 ease-in-out
+  bg-zinc-900 group-hover:bg-zinc-950
+  rounded-b-sm
+"
       >
         <div>
           <h3 className="text-xl md:text-2xl font-bold mb-2 text-gray-100 truncate font-playfair">
