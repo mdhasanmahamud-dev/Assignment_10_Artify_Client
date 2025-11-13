@@ -27,16 +27,16 @@ const SearchBar = () => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="
-          flex-1 p-2 border border-teal-300 rounded text-white
+          flex-1 p-2 border border-teal-300 rounded dark:text-white
           focus:outline-none focus:ring-2 focus:ring-teal-400
-          placeholder:text-gray-300 placeholder:text-sm placeholder:italic
+          dark:placeholder:text-gray-300 placeholder:text-sm placeholder:italic
         "
       />
 
       {/* Search Button */}
       <button
         onClick={handleSearch}
-        className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600 transition cursor-pointer"
+        className="px-4 py-2 bg-teal-500 dark:text-white rounded hover:bg-teal-600 transition cursor-pointer"
       >
         Search
       </button>
