@@ -15,7 +15,7 @@ const Login = () => {
 
   console.log("Current location state:", location.state);
   console.log("Calculated redirection path (from):", from);
-  
+
   const {
     register,
     handleSubmit,
@@ -122,13 +122,13 @@ const Login = () => {
           <button
             onClick={handleLoginGoogle}
             type="button"
-            className="w-full flex items-center justify-center gap-2 border border-gray-600 py-2 rounded-md hover:bg-zinc-700 transition cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 border border-gray-600 py-2 rounded-md dark:hover:bg-zinc-700  hover:bg-slate-200 transition cursor-pointer"
           >
             <FaGoogle className="text-emerald-400" /> Login with Google
           </button>
         </form>
 
-        <p className="text-center text-sm text-gray-400 mt-5">
+        <p className="text-center text-sm dark:text-gray-400 mt-5">
           Don’t have an account?{" "}
           <NavLink to="/register" className="text-indigo-400 hover:underline">
             Sign up
