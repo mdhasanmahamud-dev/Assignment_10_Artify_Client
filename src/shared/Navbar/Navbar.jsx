@@ -80,7 +80,7 @@ const Navbar = () => {
           {/* Theme Toggle */}
           <button
             onClick={handleToggle}
-            className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300"
+            className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300 cursor-pointer"
           >
             <CiLight
               className={`text-2xl ${
@@ -137,7 +137,7 @@ const Navbar = () => {
           {/* Theme Toggle */}
           <button
             onClick={handleToggle}
-            className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300"
+            className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300 cursor-pointer"
           >
             <CiLight
               className={`text-2xl ${
