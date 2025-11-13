@@ -2,43 +2,48 @@ import { Fade } from "react-awesome-reveal";
 
 const ArtCategoriesCard = () => {
   const categories = [
-  {
-    name: "Digital Art",
-    image: "https://i.ibb.co/60J3cP4P/ryan-ancill-eeu-Pt-EVuof-Q-unsplash.jpg",
-  },
-  {
-    name: "Oil Painting",
-    image: "https://i.ibb.co/KxXwNMyM/krists-luhaers-Yh-C216t-AYAg-unsplash.jpg",
-  },
-  {
-    name: "Abstract",
-    image: "https://i.ibb.co/DPL2Kyz8/jamie-street-q-WYv-QMIJyf-E-unsplash.jpg",
-  },
-  {
-    name: "Photography",
-    image: "https://i.ibb.co/zWsQxGx0/rene-bohmer-Ye-UVDKZWSZ4-unsplash.jpg",
-  },
-  {
-    name: "Watercolor",
-    image: "https://i.ibb.co.com/Hf3gWKKW/saif71-com-a-Xjgxr-BEQ04-unsplash.jpg",
-  },
-  {
-    name: "Street Art",
-    image: "https://i.ibb.co.com/VYZrzZcn/lisette-harzing-v-Z4-APr-MDXa4-unsplash.jpg",
-  },
-  {
-    name: "Sculpture",
-    image: "https://i.ibb.co.com/d064gz57/abhinav-sharma-ikr5f8z-cwo-unsplash.jpg",
-  },
-  {
-    name: "Illustration",
-    image: "https://i.ibb.co.com/DPyGng7Z/nik-v54w-V0e2o-FQ-unsplash.jpg",
-  },
-];
-
+    {
+      name: "Digital Art",
+      image:
+        "https://i.ibb.co/60J3cP4P/ryan-ancill-eeu-Pt-EVuof-Q-unsplash.jpg",
+    },
+    {
+      name: "Oil Painting",
+      image:
+        "https://i.ibb.co/KxXwNMyM/krists-luhaers-Yh-C216t-AYAg-unsplash.jpg",
+    },
+    {
+      name: "Abstract",
+      image:
+        "https://i.ibb.co/DPL2Kyz8/jamie-street-q-WYv-QMIJyf-E-unsplash.jpg",
+    },
+    {
+      name: "Photography",
+      image: "https://i.ibb.co/zWsQxGx0/rene-bohmer-Ye-UVDKZWSZ4-unsplash.jpg",
+    },
+    {
+      name: "Watercolor",
+      image:
+        "https://i.ibb.co.com/Hf3gWKKW/saif71-com-a-Xjgxr-BEQ04-unsplash.jpg",
+    },
+    {
+      name: "Street Art",
+      image:
+        "https://i.ibb.co.com/VYZrzZcn/lisette-harzing-v-Z4-APr-MDXa4-unsplash.jpg",
+    },
+    {
+      name: "Sculpture",
+      image:
+        "https://i.ibb.co.com/d064gz57/abhinav-sharma-ikr5f8z-cwo-unsplash.jpg",
+    },
+    {
+      name: "Illustration",
+      image: "https://i.ibb.co.com/DPyGng7Z/nik-v54w-V0e2o-FQ-unsplash.jpg",
+    },
+  ];
 
   return (
-    <section className="my-20 container mx-auto max-w-7xl px-4">
+    <section  className="my-20 container mx-auto max-w-7xl px-4">
       <Fade cascade damping={0.1} direction="up" triggerOnce>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {categories.map((cat, index) => (

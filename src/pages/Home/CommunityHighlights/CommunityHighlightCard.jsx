@@ -30,7 +30,7 @@ const CommunityHighlightCard = () => {
   ];
 
   return (
-    <div className="my-16 container mx-auto max-w-7xl px-4">
+    <div  className="my-16 container mx-auto max-w-7xl px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {highlights.map((item) => (
           <div

@@ -4,7 +4,7 @@ const ArtworkCard = ({ art }) => {
   const { _id, imageUrl, title, userName, category , like} = art;
 
   return (
-    <div className="group bg-zinc-900 hover:bg-zinc-950 text-white overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 pb-2">
+    <div  className="group bg-zinc-900 hover:bg-zinc-950 text-white overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 pb-2">
       {/* Image */}
       <img
         src={imageUrl}

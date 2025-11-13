@@ -46,7 +46,7 @@ const TopArtistsCard = () => {
   ];
 
   return (
-    <div className="my-20 container mx-auto max-w-7xl px-4">
+    <div  className="my-20 container mx-auto max-w-7xl px-4">
       {/* Artists Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {topArtists.map((artist, index) => (

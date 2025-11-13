@@ -4,7 +4,7 @@ import CommunityHighlightCard from "./CommunityHighlightCard";
 
 const CommunityHighlights = () => {
   return (
-    <div className="py-10">
+    <div data-aos="zoom-in" className="py-10">
       <SectionTitle
         title="Community Highlights"
         subTitle="Explore the most engaging creations and activities from our vibrant community"
