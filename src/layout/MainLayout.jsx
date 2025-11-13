@@ -5,7 +5,7 @@ import ToastProvider from "../components/ToastProvider";
 
 const MainLayout = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-zinc-950">
+    <div className="flex flex-col min-h-screen dark:bg-zinc-950">
       <Navbar />
       <main className="grow">
         <Outlet />

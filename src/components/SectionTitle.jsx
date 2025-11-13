@@ -5,13 +5,13 @@ const SectionTitle = ({ title, subTitle }) => {
     <div className="text-center my-12">
       {/* Subtitle */}
       {subTitle && (
-        <p className="text-indigo-400 text-sm md:text-base font-medium capitalize tracking-wider mb-2">
+        <p className="text-gray-800 dark:text-gray-300 text-sm md:text-base font-medium capitalize tracking-wider mb-2">
           {subTitle}
         </p>
       )}
       {/* Title */}
       {title && (
-        <h2 className="text-3xl md:text-4xl font-bold text-white font-playfair">
+        <h2 className="text-3xl md:text-4xl font-bold text-black dark:text-gray-100 font-playfair">
           {title}
         </h2>
       )}
