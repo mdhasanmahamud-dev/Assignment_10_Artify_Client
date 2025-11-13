@@ -4,7 +4,7 @@
 ARTIFY একটি অনলাইন আর্ট-শেয়ারিং প্ল্যাটফর্ম যা শিল্পীদের জন্য তৈরি। এই ওয়েবসাইটে ব্যবহারকারী পেতে পারেন: সৃজনশীল কাজ আপলোড ও প্রদর্শন, অন্য শিল্পীদের গ্যালারি ঘুরে দেখা, পছন্দের আর্টওয়ার্ক সংগ্রহ এবং পারস্পরিক প্রশংসা ও যোগাযোগের মাধ্যমে সংযুক্ত থাকা। SPA হিসেবে তৈরি, React + Firebase + Tailwind CSS + MongoDB and extra mongoose ব্যবহার করে।
 
 ## ## LIVE LINK
-[আপনার প্রকাশিত ওয়েবসাইটের URL দিন]
+## Project Live LInk : https://artify-ef3b9.web.app
 
 ## ## Features
 - Authentication: Email/Password & Google Sign-In 
