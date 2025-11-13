@@ -44,8 +44,8 @@ const Login = () => {
   };
   return (
     <div className="flex justify-center  my-10">
-      <div className="bg-zinc-800 text-gray-200 rounded-lg p-8 w-full max-w-xs md:max-w-md lg:max-w-lg shadow-lg border border-zinc-700">
-        <h2 className="text-3xl font-bold text-center text-indigo-400 mb-6">
+      <div className="dark:bg-zinc-800 dark:text-gray-200 rounded-lg p-8 w-full max-w-xs md:max-w-md lg:max-w-lg shadow-lg border border-zinc-700">
+        <h2 className="text-3xl font-bold text-center dark:text-indigo-400 mb-6">
           Sign in Account
         </h2>
 
