@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 import { CiLight, CiMenuFries } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 import MobileNavbar from "./MobileNavbar";
@@ -18,6 +18,7 @@ const Navbar = () => {
 
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [toggle, setToggle] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   const closeMenu = () => setShowMobileMenu(false);
   const { userloading, user, logOutUser } = useUserHook();
 
@@ -26,10 +27,25 @@ const Navbar = () => {
   };
 
   const handleToggle = () => {
-    setToggle(!toggle);
+    const newToggle = !toggle;
+    setToggle(newToggle);
+    const html = document.querySelector("html");
+    if (newToggle) {
+      html.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+      setTheme("dark");
+    } else {
+      html.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+      setTheme("light");
+    }
   };
 
-  console.log(toggle)
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+  }, [theme]);
+
   return (
     <header className="bg-white sticky top-0 z-50 border-b">
       <div className="container mx-auto px-6 py-3 flex items-center justify-between">
@@ -61,8 +77,15 @@ const Navbar = () => {
           {user ? (
             <div className="flex items-center gap-3 relative">
               {/* Light Icon */}
-              <button onClick={handleToggle}>
-                <CiLight className="text-2xl text-red-900 cursor-pointer" />
+              <button
+                onClick={handleToggle}
+                className="p-2 bg-linear-to-r from-gray-500 to-gray-700 rounded-full  transition-colors duration-300"
+              >
+                <CiLight
+                  className={`text-2xl ${
+                    theme === "light" ? "text-black" : "text-white"
+                  }`}
+                />
               </button>
 
               {/* User Image */}
@@ -97,8 +120,15 @@ const Navbar = () => {
           ) : (
             <div className="flex items-center gap-3">
               {/* Light Icon */}
-              <button onClick={handleToggle}>
-                <CiLight className="text-2xl text-red-900 cursor-pointer" />
+              <button
+                onClick={handleToggle}
+                className="p-2 bg-linear-to-r from-gray-500 to-gray-700 rounded-full  transition-colors duration-300"
+              >
+                <CiLight
+                  className={`text-2xl ${
+                    theme === "light" ? "text-black" : "text-white"
+                  }`}
+                />
               </button>
 
               {/* Login / Register */}
@@ -121,9 +151,17 @@ const Navbar = () => {
         {/* Mobile Menu Icon Toggle */}
         <div className="md:hidden">
           <div className="flex items-center gap-4">
-            <button onClick={handleToggle}>
-              <CiLight className="text-2xl text-red-900 cursor-pointer" />
+            <button
+              onClick={handleToggle}
+              className="p-2 bg-linear-to-r from-gray-500 to-gray-700 rounded-full  transition-colors duration-300"
+            >
+              <CiLight
+                className={`text-2xl ${
+                  theme === "light" ? "text-black" : "text-white"
+                }`}
+              />
             </button>
+
             {user && (
               <img
                 src={user?.photoURL}
