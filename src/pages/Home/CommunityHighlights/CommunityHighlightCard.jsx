@@ -8,7 +8,7 @@ const CommunityHighlightCard = () => {
       title: "Artify Creative Contest 2025",
       category: "Event",
       image:
-        "https://i.ibb.co.com/s9cn2nWV/george-dagerotip-Hw-Ff2-LIi-Vx-Y-unsplash.jpg",
+        "https://i.ibb.co.com/1tRTK2nW/sandro-lopes-art-P0-Z9z-F-rnq-Q-unsplash.jpg",
       artist: "Aarav Das",
     },
     {
@@ -16,7 +16,7 @@ const CommunityHighlightCard = () => {
       title: "Fusion of Colors – Collaboration Project",
       category: "Collaboration",
       image:
-        "https://i.ibb.co.com/nqRYNnp5/emily-webster-sl-Hj-A9-HQp0-unsplash.jpg",
+        "https://i.ibb.co.com/0khcCW0/dwayne-joe-eqmz-Wl-L-YWg-unsplash.jpg",
       artist: "Maya Rahman",
     },
     {
@@ -24,7 +24,7 @@ const CommunityHighlightCard = () => {
       title: "Sadia Noor – Transforming Nature",
       category: "Spotlight",
       image:
-        "https://i.ibb.co.com/Rk62RQG6/shubham-dhage-Yn-VIBUOTZXw-unsplash.jpg",
+        "https://i.ibb.co.com/KxWsJK3T/royal-anwar-g-Do-NB-BCkd-E-unsplash.jpg",
       artist: "Sadia Noor",
     },
   ];

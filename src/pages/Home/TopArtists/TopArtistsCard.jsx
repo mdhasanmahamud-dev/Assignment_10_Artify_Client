@@ -16,7 +16,7 @@ const TopArtistsCard = () => {
     {
       id: 2,
       name: "Maya Rahman",
-      image: "https://i.ibb.co.com/BpnD5hK/20220224-154635042-1.jpg",
+      image: "https://i.ibb.co.com/KxWsJK3T/royal-anwar-g-Do-NB-BCkd-E-unsplash.jpg",
       banner:
         "https://i.ibb.co.com/prJbLHfh/neon-wang-60-NH1-NVEe-C4-unsplash.jpg",
       bio: "Modern Painter & Visual Storyteller",
