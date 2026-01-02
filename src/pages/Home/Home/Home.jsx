@@ -5,6 +5,7 @@ import TopArtists from "../TopArtists/TopArtists";
 import CommunityHighlights from "../CommunityHighlights/CommunityHighlights";
 import ArtCategories from "../ArtCategories/ArtCategories";
 import Testimonials from "../Testimonials/Testimonials";
+import Newsletter from "../Newsletter/Newsletter";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <CommunityHighlights />
       <ArtCategories/>
       <Testimonials/>
+      <Newsletter/>
     </div>
   );
 };
