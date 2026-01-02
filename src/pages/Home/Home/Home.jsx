@@ -6,6 +6,7 @@ import CommunityHighlights from "../CommunityHighlights/CommunityHighlights";
 import ArtCategories from "../ArtCategories/ArtCategories";
 import Testimonials from "../Testimonials/Testimonials";
 import Newsletter from "../Newsletter/Newsletter";
+import Events from "../Events/Events";
 
 const Home = () => {
   return (
@@ -17,6 +18,7 @@ const Home = () => {
       <ArtCategories/>
       <Testimonials/>
       <Newsletter/>
+      <Events/>
     </div>
   );
 };
