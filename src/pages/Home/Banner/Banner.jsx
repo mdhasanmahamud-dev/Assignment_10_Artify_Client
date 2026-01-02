@@ -43,7 +43,7 @@ const Banner = () => {
     <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
       {bannerSlides.map((slide) => (
         <SwiperSlide key={slide.id}>
-          <div className="relative w-full h-screen md:h-[80vh]">
+          <div className="relative w-full h-screen md:h-[70vh]">
             {/* Background Image */}
             <img
               src={slide.image}

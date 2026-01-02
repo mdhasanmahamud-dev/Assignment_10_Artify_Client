@@ -8,7 +8,7 @@ const TopArtistsCard = () => {
       name: "Aarav Das",
       image: "https://i.ibb.co.com/0y8p21y0/download-2.jpg",
       banner:
-        "https://i.ibb.co.com/60yZVh72/shubham-dhage-KRXJWZHaa-WA-unsplash.jpg",
+        "https://i.ibb.co.com/840BQK3x/chuck-gould-Lg1eti-SEc-DY-unsplash.jpg",
       bio: "Digital Illustrator & Concept Artist",
       artworks: 18,
       likes: 254,
@@ -18,7 +18,7 @@ const TopArtistsCard = () => {
       name: "Maya Rahman",
       image: "https://i.ibb.co.com/KxWsJK3T/royal-anwar-g-Do-NB-BCkd-E-unsplash.jpg",
       banner:
-        "https://i.ibb.co.com/prJbLHfh/neon-wang-60-NH1-NVEe-C4-unsplash.jpg",
+        "https://i.ibb.co.com/fV3PC6bZ/lok-gwan-B0-F4-Qr8ird8-unsplash.jpg",
       bio: "Modern Painter & Visual Storyteller",
       artworks: 22,
       likes: 312,
@@ -28,7 +28,7 @@ const TopArtistsCard = () => {
       name: "Rayan Ahmed",
       image: "https://i.ibb.co.com/JWvgMvRc/download-3.jpg",
       banner:
-        "https://i.ibb.co.com/MkkT9xnL/geri-mis-btpqh-Y1v-Wv-Q-unsplash.jpg",
+        "http://i.ibb.co.com/xK0W40Yc/anya-smith-CL-Us-MAODJk-unsplash.jpg",
       bio: "3D Artist & Sculpt Designer",
       artworks: 15,
       likes: 198,
@@ -38,7 +38,7 @@ const TopArtistsCard = () => {
       name: "Sadia Noor",
       image: "https://i.ibb.co.com/bgSTFy4q/images.jpg",
       banner:
-        "https://i.ibb.co.com/KpRrVKtS/neon-wang-z-V5-PF1-BMIBo-unsplash.jpg",
+        "https://i.ibb.co.com/TDn29PcF/adel-z-r-Ob-W0-HFa-KNw-unsplash.jpg",
       bio: "Watercolor Artist & Creative Thinker",
       artworks: 20,
       likes: 276,

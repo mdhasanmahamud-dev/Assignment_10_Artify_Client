@@ -31,11 +31,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/artworks/:id",
-        element: (
-          <ProtectedRoutes>
-            <ArtworkDetails />
-          </ProtectedRoutes>
-        ),
+        element: <ArtworkDetails />,
       },
       {
         path: "/my-gallery",
