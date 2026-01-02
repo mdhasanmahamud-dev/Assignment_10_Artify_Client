@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
-
+import "swiper/css/autoplay";
+import { Navigation, Autoplay, EffectFade } from "swiper/modules";
 const Banner = () => {
   const bannerSlides = [
     {
@@ -34,13 +34,17 @@ const Banner = () => {
       title: "A Platform Built for Artists",
       subtitle:
         "From digital illustrations to modern art concepts, explore a platform designed to celebrate creativity without limits.",
-      image:
-        "https://i.ibb.co.com/S8hQvDF/sigmund-OV44gx-H71-DU-unsplash.jpg",
+      image: "https://i.ibb.co.com/S8hQvDF/sigmund-OV44gx-H71-DU-unsplash.jpg",
     },
   ];
 
   return (
-    <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+    <Swiper
+      navigation={true}
+      modules={[Navigation, Autoplay, EffectFade]}
+      autoplay={{ delay: 5000, disableOnInteraction: false }}
+      className="mySwiper"
+    >
       {bannerSlides.map((slide) => (
         <SwiperSlide key={slide.id}>
           <div className="relative w-full h-screen md:h-[70vh]">

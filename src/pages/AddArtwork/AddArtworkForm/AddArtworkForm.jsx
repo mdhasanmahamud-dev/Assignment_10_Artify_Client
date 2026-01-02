@@ -120,7 +120,6 @@ const AddArtworkForm = () => {
           <label className="block mb-1 font-medium">Visibility</label>
           <select
             {...register("visibility", { required: "Select visibility" })}
-            // Input Classes
             className="w-full p-3 rounded-md bg-gray-100 dark:bg-zinc-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-gray-300 dark:border-zinc-700 transition duration-150"
           >
             <option value="" disabled>

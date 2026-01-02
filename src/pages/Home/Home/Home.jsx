@@ -4,6 +4,7 @@ import FeaturedArtworks from "../FeaturedArtworks/FeaturedArtworks";
 import TopArtists from "../TopArtists/TopArtists";
 import CommunityHighlights from "../CommunityHighlights/CommunityHighlights";
 import ArtCategories from "../ArtCategories/ArtCategories";
+import Testimonials from "../Testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
       <TopArtists />
       <CommunityHighlights />
       <ArtCategories/>
+      <Testimonials/>
     </div>
   );
 };

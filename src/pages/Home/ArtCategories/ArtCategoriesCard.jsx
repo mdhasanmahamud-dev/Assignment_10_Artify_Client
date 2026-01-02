@@ -49,7 +49,7 @@ const ArtCategoriesCard = () => {
           {categories.map((cat, index) => (
             <div
               key={index}
-              className="relative group rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 bg-zinc-900 border border-zinc-800 cursor-pointer"
+              className="relative group rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 bg-zinc-900 border border-zinc-800 cursor-pointer"
             >
               {/* Image */}
               <img
@@ -69,7 +69,7 @@ const ArtCategoriesCard = () => {
               </div>
 
               {/* Decorative Border Glow on Hover */}
-              <div className="absolute inset-0 border-2 border-transparent rounded-3xl group-hover:border-indigo-500 transition-all duration-500"></div>
+              <div className="absolute inset-0 border-2 border-transparent rounded-lg group-hover:border-indigo-500 transition-all duration-500"></div>
             </div>
           ))}
         </div>
