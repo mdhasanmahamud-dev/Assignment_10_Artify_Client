@@ -13,6 +13,7 @@ import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails/ArtworkDetail
 import UpdateGallery from "../pages/MyGallery/UpdateGallery/UpdateGallery";
 import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../dashboard/dashboard/dashboard";
+import About from "../pages/About/About";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,10 +24,8 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/explore-artworks", element: <ExploreArtworks /> },
-      {
-        path: "/artworks/:id",
-        element: <ArtworkDetails />,
-      },
+      {path: "/artworks/:id",element: <ArtworkDetails />},
+      {path : "/about", element : <About/>}
     ],
   },
   {

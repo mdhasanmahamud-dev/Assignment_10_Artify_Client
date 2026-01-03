@@ -1,46 +1,15 @@
 import React from "react";
-import {
-  FaPaintBrush,
-  FaImages,
-  FaHeart,
-  FaUsers,
-} from "react-icons/fa";
+import { FaPaintBrush, FaImages, FaHeart, FaUsers } from "react-icons/fa";
 
 const Dashboard = () => {
   return (
     <div className="space-y-8">
-      {/* Page Title */}
-      <div>
-        <h1 className="text-2xl font-semibold text-gray-800 dark:text-white">
-          Dashboard Overview
-        </h1>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          Welcome back! Here is a quick summary of your activity.
-        </p>
-      </div>
-
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard
-          title="Total Artworks"
-          value="128"
-          icon={<FaImages />}
-        />
-        <StatCard
-          title="My Gallery"
-          value="36"
-          icon={<FaPaintBrush />}
-        />
-        <StatCard
-          title="Favorites"
-          value="54"
-          icon={<FaHeart />}
-        />
-        <StatCard
-          title="Followers"
-          value="1.2K"
-          icon={<FaUsers />}
-        />
+        <StatCard title="Total Artworks" value="128" icon={<FaImages />} />
+        <StatCard title="My Gallery" value="36" icon={<FaPaintBrush />} />
+        <StatCard title="Favorites" value="54" icon={<FaHeart />} />
+        <StatCard title="Followers" value="1.2K" icon={<FaUsers />} />
       </div>
 
       {/* Recent Section */}
@@ -52,17 +21,20 @@ const Dashboard = () => {
           </h2>
 
           <ul className="space-y-3">
-            {["Sunset Canvas", "Abstract Flow", "Night City", "Minimal Lines"].map(
-              (item) => (
-                <li
-                  key={item}
-                  className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition"
-                >
-                  <span className="text-sm font-medium">{item}</span>
-                  <span className="text-xs text-gray-500">2 days ago</span>
-                </li>
-              )
-            )}
+            {[
+              "Sunset Canvas",
+              "Abstract Flow",
+              "Night City",
+              "Minimal Lines",
+            ].map((item) => (
+              <li
+                key={item}
+                className="flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 transition"
+              >
+                <span className="text-sm font-medium">{item}</span>
+                <span className="text-xs text-gray-500">2 days ago</span>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -109,9 +81,7 @@ const StatCard = ({ title, value, icon }) => {
           {value}
         </h3>
       </div>
-      <div className="text-2xl text-indigo-600">
-        {icon}
-      </div>
+      <div className="text-2xl text-indigo-600">{icon}</div>
     </div>
   );
 };

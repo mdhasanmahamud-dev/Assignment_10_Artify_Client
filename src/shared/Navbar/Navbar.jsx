@@ -11,6 +11,7 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Explore Artworks", path: "/explore-artworks" },
+    { name: "About", path: "/about" },
   ];
 
   const [showMobileMenu, setShowMobileMenu] = useState(false);
