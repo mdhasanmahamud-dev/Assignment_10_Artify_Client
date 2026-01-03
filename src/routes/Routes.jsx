@@ -14,6 +14,7 @@ import UpdateGallery from "../pages/MyGallery/UpdateGallery/UpdateGallery";
 import DashboardLayout from "../layout/DashboardLayout";
 import Dashboard from "../dashboard/dashboard/dashboard";
 import About from "../pages/About/About";
+import Contact from "../pages/Contact/Contact";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,7 +26,8 @@ const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/explore-artworks", element: <ExploreArtworks /> },
       {path: "/artworks/:id",element: <ArtworkDetails />},
-      {path : "/about", element : <About/>}
+      {path : "/about", element : <About/>},
+      {path : "/contact", element : <Contact/>}
     ],
   },
   {

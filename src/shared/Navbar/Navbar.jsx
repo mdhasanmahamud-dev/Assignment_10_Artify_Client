@@ -12,6 +12,7 @@ const Navbar = () => {
     { name: "Home", path: "/" },
     { name: "Explore Artworks", path: "/explore-artworks" },
     { name: "About", path: "/about" },
+    { name: "Contact", path: "/contact" },
   ];
 
   const [showMobileMenu, setShowMobileMenu] = useState(false);
