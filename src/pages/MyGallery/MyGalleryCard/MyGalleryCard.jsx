@@ -53,7 +53,7 @@ const MyGalleryCard = ({ gallery }) => {
           {/* Edit & Delete Icons */}
           <div className="flex items-center gap-3">
             <NavLink
-              to={`/my-gallery/edit/${_id}`}
+              to={`/dashboard/my-gallery/edit/${_id}`}
               className="p-2 rounded-full bg-teal-600 hover:bg-teal-700 transition"
               title="Edit Artwork"
             >

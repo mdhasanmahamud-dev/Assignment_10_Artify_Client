@@ -11,6 +11,8 @@ import PageNotFound from "../pages/PageNotFound/PageNotFound";
 import ProtectedRoutes from "./ProtectedRoutes";
 import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails/ArtworkDetails";
 import UpdateGallery from "../pages/MyGallery/UpdateGallery/UpdateGallery";
+import DashboardLayout from "../layout/DashboardLayout";
+import Dashboard from "../dashboard/dashboard/dashboard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,7 +24,21 @@ const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       { path: "/explore-artworks", element: <ExploreArtworks /> },
       {
-        path: "/add-artwork",
+        path: "/artworks/:id",
+        element: <ArtworkDetails />,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+      {
+        path: "add-artwork",
         element: (
           <ProtectedRoutes>
             <AddArtwork />
@@ -30,11 +46,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/artworks/:id",
-        element: <ArtworkDetails />,
-      },
-      {
-        path: "/my-gallery",
+        path: "my-gallery",
         element: (
           <ProtectedRoutes>
             <MyGallery />
@@ -42,7 +54,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/my-gallery/edit/:id",
+        path: "my-gallery/edit/:id",
         element: (
           <ProtectedRoutes>
             <UpdateGallery />
@@ -50,7 +62,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/my-favorites",
+        path: "my-favorites",
         element: (
           <ProtectedRoutes>
             <MyFavorites />

@@ -11,9 +11,6 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", path: "/" },
     { name: "Explore Artworks", path: "/explore-artworks" },
-    { name: "Add Artwork", path: "/add-artwork" },
-    { name: "My Gallery", path: "/my-gallery" },
-    { name: "My Favorites", path: "/my-favorites" },
   ];
 
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -99,18 +96,40 @@ const Navbar = () => {
               />
               <Tooltip
                 anchorId="user-img"
-                place="bottom"
-                clickable={true}
-                className="bg-zinc-800 p-3 rounded"
+                place="bottom-end"
+                clickable
+                className="!bg-zinc-900 !p-0 rounded-xl shadow-lg border border-zinc-700"
               >
-                <div className="flex flex-col items-start">
-                  <p className="font-semibold text-white">{user.displayName}</p>
-                  <button
-                    onClick={handleLogout}
-                    className="bg-red-600 hover:bg-red-700 px-3 py-1 rounded-md text-white w-full cursor-pointer"
-                  >
-                    Logout
-                  </button>
+                <div className="w-42 text-sm">
+                  {/* User Info */}
+                  <div className="px-4 py-3 border-b border-zinc-700">
+                    <p className="font-semibold text-white truncate">
+                      {user?.displayName}
+                    </p>
+                    <p className="text-xs text-zinc-400 truncate">
+                      {user?.email}
+                    </p>
+                  </div>
+
+                  {/* Menu */}
+                  <div className="py-2">
+                    <NavLink
+                      to="/dashboard"
+                      className="block text-center px-4 py-2 text-zinc-200 hover:bg-zinc-800 transition"
+                    >
+                      Dashboard
+                    </NavLink>
+                  </div>
+
+                  {/* Logout */}
+                  <div className="px-4 py-3 border-t border-zinc-700">
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-center cursor-pointer text-red-500 hover:text-red-600 font-medium transition"
+                    >
+                      Logout
+                    </button>
+                  </div>
                 </div>
               </Tooltip>
             </div>
