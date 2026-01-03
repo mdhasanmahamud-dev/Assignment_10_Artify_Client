@@ -100,7 +100,7 @@ const Navbar = () => {
                 anchorId="user-img"
                 place="bottom-end"
                 clickable
-                className="!bg-zinc-900 !p-0 rounded-xl shadow-lg border border-zinc-700"
+                className="bg-zinc-900! p-0 rounded-xl shadow-lg border border-zinc-700"
               >
                 <div className="w-42 text-sm">
                   {/* User Info */}

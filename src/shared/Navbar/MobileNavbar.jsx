@@ -33,12 +33,22 @@ const MobileNavbar = ({ navItems, closeMenu }) => {
 
         {/* Auth Buttons (Mobile) */}
         {user ? (
-          <button
-            onClick={handleLogout}
-            className="bg-red-700 dark:bg-red-600 text-white py-2 hover:bg-red-800 dark:hover:bg-red-700 cursor-pointer transition-all duration-300 ease-in-out rounded-md font-playfair mt-2"
-          >
-            Logout
-          </button>
+          <div>
+            <div className="py-2">
+              <NavLink
+                to="/dashboard"
+                className="block bg-indigo-600 text-center rounded-md px-4 py-2 text-zinc-200 hover:bg-indigo-700 transition"
+              >
+                Dashboard
+              </NavLink>
+              <button
+                onClick={handleLogout}
+                className="block w-full bg-red-700 dark:bg-red-600 text-white py-2 hover:bg-red-800 dark:hover:bg-red-700 cursor-pointer transition-all duration-300 ease-in-out rounded-md font-playfair mt-2"
+              >
+                Logout
+              </button>
+            </div>
+          </div>
         ) : (
           <div className="flex flex-col space-y-2 mt-2">
             <NavLink
