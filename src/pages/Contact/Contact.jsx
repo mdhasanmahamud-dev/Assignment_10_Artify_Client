@@ -3,9 +3,9 @@ import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 
 const Contact = () => {
   return (
-    <div className="bg-white dark:bg-zinc-950 text-slate-800 dark:text-zinc-200">
+    <div className="bg-white dark:bg-zinc-950 text-slate-800 dark:text-zinc-200 md:pb-10">
       {/* Header */}
-      <section className="pt-20 pb-14 px-6 text-center">
+      <section className="py-10 px-6 text-center">
         <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-4">
           Contact Us
         </h1>
