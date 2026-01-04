@@ -1,14 +1,24 @@
 // components/ProfileSummary.jsx
 import React from "react";
+import useUserHook from "../../hooks/useUserHook";
 
 const ProfileSummary = () => {
+  const { user } = useUserHook();
+  // console.log(user);
+
   const profile = {
-    initial: "A",
-    name: "Artify Creator",
-    email: "artist@artify.com",
-    joined: "Jan 2024",
-    role: "Artist",
-    status: "Active",
+    initial: user?.displayName ? user.displayName[0].toUpperCase() : "A",
+    name: user?.displayName || "Artify Creator",
+    email: user?.email || "artist@artify.com",
+    photoURL: user?.photoURL || null,
+    joined: user?.createdAt
+      ? new Date(parseInt(user.createdAt)).toLocaleDateString("en-US", {
+          month: "short",
+          year: "numeric",
+        })
+      : "Jan 2024",
+    role: user?.role || "Artist",
+    status: user?.status || "Active",
   };
 
   return (
@@ -18,9 +28,18 @@ const ProfileSummary = () => {
       </h2>
 
       <div className="flex items-center gap-4">
-        <div className="w-14 h-14 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-lg">
-          {profile.initial}
-        </div>
+        {profile.photoURL ? (
+          <img
+            src={profile.photoURL}
+            alt={profile.name}
+            className="w-14 h-14 rounded-full object-cover"
+          />
+        ) : (
+          <div className="w-14 h-14 rounded-full bg-indigo-500 flex items-center justify-center text-white font-bold text-lg">
+            {profile.initial}
+          </div>
+        )}
+
         <div>
           <h3 className="font-medium">{profile.name}</h3>
           <p className="text-xs text-gray-500">{profile.email}</p>
@@ -36,7 +55,11 @@ const ProfileSummary = () => {
         </p>
         <p>
           <span className="font-medium">Status:</span>{" "}
-          <span className={profile.status === "Active" ? "text-green-600" : "text-red-600"}>
+          <span
+            className={
+              profile.status === "Active" ? "text-green-600" : "text-red-600"
+            }
+          >
             {profile.status}
           </span>
         </p>
