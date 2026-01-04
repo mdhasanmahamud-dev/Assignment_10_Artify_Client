@@ -7,24 +7,33 @@ const StatCard = () => {
   const axiosSecure = useAxiosSecure();
 
   const [totalArtworks, setTotalArtworks] = useState(0);
+  const [totalFavorites, setTotalFavorites] = useState(0);
 
   useEffect(() => {
     const fetchTotalArtworks = async () => {
       try {
         const res = await axiosSecure.get("/artworks/my-total-artworks");
-        console.log(res)
+        console.log(res);
         setTotalArtworks(res.data.totalArtworks);
       } catch (error) {
         console.error("Error fetching total artworks:", error);
       }
     };
-
+    const fetchTotalFavorites = async () => {
+      try {
+        const res = await axiosSecure.get("/my-favorite/my-total-favorites");
+        setTotalFavorites(res.data.totalFavorites);
+      } catch (error) {
+        console.error("Error fetching total favorites:", error);
+      }
+    };
     fetchTotalArtworks();
+    fetchTotalFavorites();
   }, [axiosSecure]);
   const stats = [
     { title: "Total Artworks", value: totalArtworks, icon: <FaImages /> },
     { title: "My Gallery", value: "36", icon: <FaPaintBrush /> },
-    { title: "Favorites", value: "54", icon: <FaHeart /> },
+    { title: "Favorites", value: totalFavorites, icon: <FaHeart /> },
     { title: "Followers", value: "1.2K", icon: <FaUsers /> },
   ];
 
