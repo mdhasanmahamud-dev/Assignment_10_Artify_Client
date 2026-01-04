@@ -13,12 +13,10 @@ const Login = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  console.log("Current location state:", location.state);
-  console.log("Calculated redirection path (from):", from);
-
   const {
     register,
     handleSubmit,
+    setValue, 
     formState: { errors },
   } = useForm();
 
@@ -42,8 +40,14 @@ const Login = () => {
       console.error("Google login error:", error);
     }
   };
+
+  const autofillDemo = () => {
+    setValue("email", "mdhasanmahamud01947@gmail.com");
+    setValue("password", "MdHasanMahamud@@@@");
+  };
+
   return (
-    <div className="flex justify-center  my-10">
+    <div className="flex justify-center my-10">
       <div className="dark:bg-zinc-800 dark:text-gray-200 rounded-lg p-8 w-full max-w-xs md:max-w-md lg:max-w-lg shadow-lg border border-zinc-700">
         <h2 className="text-3xl font-bold text-center dark:text-indigo-400 mb-6">
           Sign in Account
@@ -103,6 +107,15 @@ const Login = () => {
             )}
           </div>
 
+          {/* Autofill Button */}
+          <button
+            type="button"
+            onClick={autofillDemo}
+            className="w-full bg-gray-700 hover:bg-gray-800 text-white font-semibold py-2 rounded-lg cursor-pointer transition"
+          >
+            Fill Demo Account
+          </button>
+
           {/* Login Button */}
           <button
             type="submit"
@@ -122,7 +135,7 @@ const Login = () => {
           <button
             onClick={handleLoginGoogle}
             type="button"
-            className="w-full flex items-center justify-center gap-2 border border-gray-600 py-2 rounded-md dark:hover:bg-zinc-700  hover:bg-slate-200 transition cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 border border-gray-600 py-2 rounded-md dark:hover:bg-zinc-700 hover:bg-slate-200 transition cursor-pointer"
           >
             <FaGoogle className="text-emerald-400" /> Login with Google
           </button>
