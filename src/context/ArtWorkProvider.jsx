@@ -16,12 +16,14 @@ const ArtWorkProvider = ({ children }) => {
   const [galleryLoading, setGalleryLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [updateLoading, setUpdateLoading] = useState(false);
+  const [recommendedLoading, setRecommendedLoading] = useState(false);
   //Data States
   const [latestArtworks, setLatestArtworks] = useState([]);
   const [publicArtworks, setPublicArtworks] = useState([]);
   const [artworkDetail, setArtworkDetail] = useState(null);
   const [myGallery, setMyGallery] = useState([]);
   const [like, setLike] = useState();
+  const [recommendedArts, setRecommendedArts] = useState([]);
 
   const axiosSecure = useAxiosSecure();
 
@@ -52,13 +54,13 @@ const ArtWorkProvider = ({ children }) => {
         setLatestArtworks((prev) => [response.data.data, ...prev]);
       }
       SuccessSweetAlart(response.data.message);
-      console.log(response);
     } catch (error) {
       console.log("Error adding artwork:", error);
     } finally {
       setAddNewArtsLoading(false);
     }
   };
+
   //Fetch Public Artworks
   const fetchPublicArtworks = async (searchTerm = "") => {
     setPublicArtLoading(true);
@@ -167,7 +169,6 @@ const ArtWorkProvider = ({ children }) => {
     setUpdateLoading(true);
     try {
       const response = await axiosSecure.put(`/my-gallery/${id}`, updatedData);
-      console.log(response);
       if (response.data.success) {
         setMyGallery((prev) =>
           prev.map((art) => (art._id === id ? response.data.data : art))
@@ -190,6 +191,18 @@ const ArtWorkProvider = ({ children }) => {
     }
   };
 
+  const fetchRecommendedArtworks = async (id) => {
+    try {
+      setRecommendedLoading(true);
+      const res = await apiClient.get(`/artworks/recommended/${id}`);
+      setRecommendedArts(res.data.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setRecommendedLoading(false);
+    }
+  };
+
   const artInfo = {
     ////////loading////////////
     latestArtWorkLoading,
@@ -200,12 +213,14 @@ const ArtWorkProvider = ({ children }) => {
     deleteLoading,
     updateLoading,
     likeLoading,
+    recommendedLoading,
     like,
     ///////////state data/////////////
     latestArtworks,
     publicArtworks,
     artworkDetail,
     myGallery,
+    recommendedArts,
     ///////////function///////////
     setPublicArtworks,
     addNewArt,
@@ -215,6 +230,7 @@ const ArtWorkProvider = ({ children }) => {
     fetchMyGallery,
     deleteArtFromGallery,
     updateArtWork,
+    fetchRecommendedArtworks,
   };
   return (
     <ArtWorkContext.Provider value={artInfo}>

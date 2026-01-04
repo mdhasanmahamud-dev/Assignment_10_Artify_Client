@@ -8,7 +8,6 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2  gap-6">
         <StatCard />
       </div>
-
       {/* Recent Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <RecentArtworks />
