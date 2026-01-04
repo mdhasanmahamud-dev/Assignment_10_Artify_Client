@@ -32,9 +32,7 @@ const StatCard = () => {
   }, [axiosSecure]);
   const stats = [
     { title: "Total Artworks", value: totalArtworks, icon: <FaImages /> },
-    { title: "My Gallery", value: "36", icon: <FaPaintBrush /> },
     { title: "Favorites", value: totalFavorites, icon: <FaHeart /> },
-    { title: "Followers", value: "1.2K", icon: <FaUsers /> },
   ];
 
   return (
